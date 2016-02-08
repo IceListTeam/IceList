@@ -21,17 +21,17 @@
           {{/if}}
 
           <div class="input-symbol  {{errorClass 'email'}}">
-            <input type="email" name="email" placeholder="Your Email" />
+            <input type="email" name="email" placeholder="Your Email" required/>
             <span class="icon-email" title="Your Email"></span>
           </div>
 
           <div class="input-symbol  {{errorClass 'email'}}">
-            <input type="text" name="FirstName" placeholder="First Name"  /> 
+            <input type="text" name="FirstName" placeholder="First Name" required  /> 
              
           </div>
 
           <div class="input-symbol  {{errorClass 'email'}}">
-            <input type="text" name="LastName" placeholder="Last Name" />
+            <input type="text" name="LastName" placeholder="Last Name" required />
             <span title="Last Name"></span>
           </div>
           <div class="input-symbol  {{errorClass 'email'}}">
@@ -45,7 +45,7 @@
           </div>
 
           <div class="input-symbol  {{errorClass 'password'}}">
-            <input type="date" name="GradDate" placeholder="Graduation Date" />
+            <input type="date" name="GradDate" placeholder="Graduation Date" required/>
             <span title="Graduation Date"></span>
           </div>
 
@@ -55,12 +55,12 @@
           </div>
 
           <div class="input-symbol  {{errorClass 'password'}}">
-            <input type="password" name="password" placeholder="Password" />
+            <input type="password" name="password" placeholder="Password" required/>
             <span class="icon-lock" title="Password"></span>
           </div>
 
           <div class="input-symbol {{errorClass 'confirm'}}">
-            <input type="password" name="confirm" placeholder="Confirm Password" />
+            <input type="password" name="confirm" placeholder="Confirm Password" required/>
             <span class="icon-lock" title="Confirm Password"></span>
           </div>
 

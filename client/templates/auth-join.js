@@ -8,20 +8,22 @@ Template.join.onCreated(function() {
 /*
 Template.join.onRendered(function() {
   $('.input-symbol').validate({
+
+
     rules: {
       email: {
         required:true,
-        email:true
+      
       },
       password: {
         required: true,
-        minlength: 8
+   
       }
     },
     messages: {
       email: {
         required: "Please enter your email address."
-        email: "Please enter a valid email address."
+       
       },
       password: {
         required: "Please enter your password"
@@ -54,6 +56,7 @@ Template.join.events({
     var confirm = template.$('[name=confirm]').val();
 
     var errors = {};
+    var user;
 
     if (! email) {
       errors.email = 'Email required';
@@ -72,7 +75,7 @@ Template.join.events({
       return;
     }
 
-    Accounts.createUser({
+    user = {
       email: email,
       firstname: firstName,
       lastname: lastName,
@@ -81,7 +84,27 @@ Template.join.events({
       gradDate: gradDate,
       phone: phone,
       password: password
-    }, function(error) {
+
+    }
+
+   //get error here in console "accounts.validateNewUser is not a fcn"
+    Accounts.validateNewUser(function (user) {  
+  // Ensure user name is long enough
+  console.log("made it to validate new user!");
+  if (user.password.length() < 5) {
+    throw new Meteor.Error(403, 'Your username needs at least 5 characters');
+  }
+
+   var passwordTest = new RegExp("(?=.{6,}).*", "g");
+  if (passwordTest.test(user.password) == false) {
+    throw new Meteor.Error(403, 'Your password is too weak!');
+  }
+
+  return true;
+});
+
+
+    Accounts.createUser(user, function(error) {
       if (error) {
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }
