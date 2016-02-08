@@ -52,8 +52,8 @@ Template.join.events({
     var major = template.$('[name=Major]').val();
     var gradDate = template.$('[name=GradDate]').val();
     var phone = template.$('[name=Phone]').val();
-    var password = template.$('[name=password]').val();
-    var confirm = template.$('[name=confirm]').val();
+    var inPass = template.$('[name=password]').val();
+    var confPass = template.$('[name=confirm]').val();
 
     var errors = {};
     var user;
@@ -62,11 +62,11 @@ Template.join.events({
       errors.email = 'Email required';
     }
 
-    if (! password) {
+    if (! inPass) {
       errors.password = 'Password required';
     }
 
-    if (confirm !== password) {
+    if (confPass !== inPass) {
       errors.confirm = 'Please confirm your password';
     }
 
@@ -76,35 +76,22 @@ Template.join.events({
     }
 
     user = {
-      email: email,
       firstname: firstName,
       lastname: lastName,
       birthday: birthday,
       major: major,
       gradDate: gradDate,
-      phone: phone,
-      password: password
+      phone: phone
 
     }
+	
+	console.log(user);
 
    //get error here in console "accounts.validateNewUser is not a fcn"
-    Accounts.validateNewUser(function (user) {  
-  // Ensure user name is long enough
-  console.log("made it to validate new user!");
-  if (user.password.length() < 5) {
-    throw new Meteor.Error(403, 'Your username needs at least 5 characters');
-  }
-
-   var passwordTest = new RegExp("(?=.{6,}).*", "g");
-  if (passwordTest.test(user.password) == false) {
-    throw new Meteor.Error(403, 'Your password is too weak!');
-  }
-
-  return true;
-});
+    
 
 
-    Accounts.createUser(user, function(error) {
+    Accounts.createUser({ name: firstName + lastName , password: inPass , email: email, profile: user}, function(error) {
       if (error) {
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }
