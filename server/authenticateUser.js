@@ -2,11 +2,15 @@
 Accounts.validateNewUser(function (user) {  
   // Ensure user name is long enough
   console.log("made it to validate new user!");
-  console.log( user );
+  console.log(user);
+  //var userEmail = user.email[0];
+  //console.log(userEmail);
+  console.log(user.profile.email);
+
   
   Email.send({
 	from: "from@mailinator.com",
-	to: user.email[0].address,
+	to: user.profile.email,
 	subject: "Subject",
 	text: "Here is some text"
 	});

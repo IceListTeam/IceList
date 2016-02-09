@@ -81,8 +81,8 @@ Template.join.events({
       birthday: birthday,
       major: major,
       gradDate: gradDate,
-      phone: phone
-
+      phone: phone,
+      email:email
     }
 	
 	console.log(user);
