@@ -7,13 +7,14 @@ Accounts.validateNewUser(function (user) {
   //console.log(userEmail);
   console.log(user.profile.email);
 
-  
+  /*
   Email.send({
 	from: "from@mailinator.com",
 	to: user.profile.email,
 	subject: "Subject",
 	text: "Here is some text"
 	});
+*/
 
    var passwordTest = new RegExp("(?=.{6,}).*", "g");
   if (passwordTest.test(user.password) == false) {

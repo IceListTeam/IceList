@@ -84,9 +84,41 @@ Template.join.events({
       phone: phone,
       email:email
     }
-	
-	console.log(user);
 
+	Accounts.onEmailVerificationLink(function(token, callback) {
+    var userId;
+
+    console.log('Verifying email...');
+
+    if (!token)
+      throw new Error("Need to pass token");
+
+    var aftercallLoginMethod = function(error) {
+
+      if (!error) {
+
+        console.log('aftercallLoginMethod - success');
+        userId = Meteor.userId();
+        console.log('UserId (IN) : ' + userId);
+
+        if(userId) {
+          
+          Meteor.call('onEmailVerificationLink', {userId: userId}, function (error) {
+            if (error) { 
+              console.log("Accounts.onEmailVerificationLink error - " + error); 
+              return null; 
+            }
+
+            callback(); 
+          });
+
+        }
+
+      } else {
+        console.log('aftercallLoginMethod error - ' + error);
+      }
+    }
+});
    //get error here in console "accounts.validateNewUser is not a fcn"
     
 
