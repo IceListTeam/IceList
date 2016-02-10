@@ -19,10 +19,12 @@ Accounts.validateNewUser(function (user) {
 });
 */
 
-
-
   Accounts.validateNewUser(function (user) {
+<<<<<<< HEAD
   if (user.profile.firstname.length >= 3)
+=======
+  if (user.username && user.username.length >= 3)
+>>>>>>> parent of 162510e... added verify email function
     return true;
   throw new Meteor.Error(403, "Username must have at least 3 characters");
 });

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   Template.signin.onCreated(function() {
     if (Accounts._verifyEmailToken) {
       console.log("in join.onCreated Accounts Verify EMAIL!!!");
@@ -12,3 +13,5 @@
       });
     }
   });
+=======
+>>>>>>> parent of 162510e... added verify email function
