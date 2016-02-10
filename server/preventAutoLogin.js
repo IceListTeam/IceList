@@ -1,3 +1,4 @@
+
 Meteor.startup(function() {
     var loginAttemptVerifier = function(parameters) {
       if (parameters.user && parameters.user.emails && (parameters.user.emails.length > 0)) {

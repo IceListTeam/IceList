@@ -6,8 +6,13 @@ Template.join.onCreated(function() {
 
 
 
+
 Template.join.onRendered(function() {
-  $('.input-symbol').validate({
+  $('.input-symbol').validate();
+  console.log("hey im in onRendered");
+});
+  /*
+  {
     rules: {
       password: {
         minlength: 6
@@ -20,6 +25,7 @@ Template.join.onRendered(function() {
     }
   });
 });
+*/
 /*
       },
       password: {
@@ -50,7 +56,7 @@ Template.join.helpers({
 });
 
 Template.join.events({
-  'submit form': function(event, template) {
+  'submit': function(event, template) {
     event.preventDefault();
     var email = template.$('[name=email]').val();
     var firstName = template.$('[name=FirstName]').val();
@@ -91,55 +97,11 @@ Template.join.events({
       phone: phone,
       email:email
     }
-<<<<<<< HEAD
 
 
-   // Accounts.config({ restrictCreationByEmailDomain: 'pitt.edu' });
-=======
-/*
-	Accounts.onEmailVerificationLink(function(token, callback) {
-    var userId;
 
-    console.log('Verifying email...');
-
-    if (!token)
-      throw new Error("Need to pass token");
-
-    var aftercallLoginMethod = function(error) {
-
-      if (!error) {
-
-        console.log('aftercallLoginMethod - success');
-        userId = Meteor.userId();
-        console.log('UserId (IN) : ' + userId);
-
-        if(userId) {
-          
-          Meteor.call('onEmailVerificationLink', {userId: userId}, function (error) {
-            if (error) { 
-              console.log("Accounts.onEmailVerificationLink error - " + error); 
-              return null; 
-            }
-
-            callback(); 
-          });
-
-        }
-
-      } else {
-        console.log('aftercallLoginMethod error - ' + error);
-      }
-    }
-});
-  */
-    //only allow pitt.edu accounts
-    //this works but only once
-          Accounts.config({ restrictCreationByEmailDomain: 'pitt.edu' });
 
   
-
-
->>>>>>> parent of 162510e... added verify email function
 
     Accounts.createUser({ name: firstName + lastName , password: inPass , email: email, profile: user}, function(error) {
       if (error) {
