@@ -127,13 +127,11 @@ Template.join.events({
     }
 });
   */
+
+
     //only allow pitt.edu accounts
     //this works but only once
-          Accounts.config({ restrictCreationByEmailDomain: 'pitt.edu' });
-
-  
-
-
+        //  Accounts.config({ restrictCreationByEmailDomain: 'pitt.edu' });
 
     Accounts.createUser({ name: firstName + lastName , password: inPass , email: email, profile: user}, function(error) {
       if (error) {
@@ -142,5 +140,6 @@ Template.join.events({
 
       Router.go('home');
     });
+
   }
 });

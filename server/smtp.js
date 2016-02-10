@@ -21,7 +21,14 @@ Accounts.emailTemplates.verifyEmail.subject = function(user) {
     sendVerificationEmail: true
   });
 
+
+
+
+  
+
 });
+
+
 
 
 /*
