@@ -3,6 +3,7 @@ Accounts.validateNewUser(function (user) {
   // Ensure user name is long enough
   console.log("made it to validate new user!");
   console.log(user);
+  console.log(user.password);
   //var userEmail = user.email[0];
   //console.log(userEmail);
   console.log(user.profile.email);
@@ -21,9 +22,18 @@ Accounts.validateNewUser(function (user) {
 
 
   Accounts.validateNewUser(function (user) {
-  if (user.username.length >= 3)
+  if (user.profile.firstname.length >= 3)
     return true;
   throw new Meteor.Error(403, "Username must have at least 3 characters");
+});
+
+  Accounts.validateNewUser(function (user) {
+    var passwordTest = new RegExp("(?=.{6,}).*", "g");
+  if (passwordTest.test(user.password) == false) 
+  {
+     throw new Meteor.Error(403, 'Your password is too weak!');
+  }
+   return true;
 });
   
   /*
@@ -35,10 +45,5 @@ Accounts.validateNewUser(function (user) {
 	});
 */
 
-   var passwordTest = new RegExp("(?=.{6,}).*", "g");
-  if (passwordTest.test(user.password) == false) {
-	throw new Meteor.Error(403, 'Your password is too weak!');
-  }
-
-  return true;
+   
 });

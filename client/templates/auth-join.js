@@ -50,7 +50,7 @@ Template.join.helpers({
 });
 
 Template.join.events({
-  'submit': function(event, template) {
+  'submit form': function(event, template) {
     event.preventDefault();
     var email = template.$('[name=email]').val();
     var firstName = template.$('[name=FirstName]').val();
@@ -91,47 +91,9 @@ Template.join.events({
       phone: phone,
       email:email
     }
-/*
-	Accounts.onEmailVerificationLink(function(token, callback) {
-    var userId;
-
-    console.log('Verifying email...');
-
-    if (!token)
-      throw new Error("Need to pass token");
-
-    var aftercallLoginMethod = function(error) {
-
-      if (!error) {
-
-        console.log('aftercallLoginMethod - success');
-        userId = Meteor.userId();
-        console.log('UserId (IN) : ' + userId);
-
-        if(userId) {
-          
-          Meteor.call('onEmailVerificationLink', {userId: userId}, function (error) {
-            if (error) { 
-              console.log("Accounts.onEmailVerificationLink error - " + error); 
-              return null; 
-            }
-
-            callback(); 
-          });
-
-        }
-
-      } else {
-        console.log('aftercallLoginMethod error - ' + error);
-      }
-    }
-});
-  */
 
 
-    //only allow pitt.edu accounts
-    //this works but only once
-        //  Accounts.config({ restrictCreationByEmailDomain: 'pitt.edu' });
+   // Accounts.config({ restrictCreationByEmailDomain: 'pitt.edu' });
 
     Accounts.createUser({ name: firstName + lastName , password: inPass , email: email, profile: user}, function(error) {
       if (error) {

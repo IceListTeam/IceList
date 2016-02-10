@@ -1,4 +1,4 @@
-  Template.join.onCreated(function() {
+  Template.signin.onCreated(function() {
     if (Accounts._verifyEmailToken) {
       console.log("in join.onCreated Accounts Verify EMAIL!!!");
       Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {
