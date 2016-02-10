@@ -5,15 +5,22 @@ Template.join.onCreated(function() {
 });
 
 
-/*
+
 Template.join.onRendered(function() {
   $('.input-symbol').validate({
-
-
     rules: {
-      email: {
-        required:true,
-      
+      password: {
+        minlength: 6
+      }
+    },
+    messages: {
+      password: {
+        minlength: "your password must be 6"
+      }
+    }
+  });
+});
+/*
       },
       password: {
         required: true,
@@ -84,7 +91,7 @@ Template.join.events({
       phone: phone,
       email:email
     }
-
+/*
 	Accounts.onEmailVerificationLink(function(token, callback) {
     var userId;
 
@@ -119,8 +126,13 @@ Template.join.events({
       }
     }
 });
-   //get error here in console "accounts.validateNewUser is not a fcn"
-    
+  */
+    //only allow pitt.edu accounts
+    //this works but only once
+          Accounts.config({ restrictCreationByEmailDomain: 'pitt.edu' });
+
+  
+
 
 
     Accounts.createUser({ name: firstName + lastName , password: inPass , email: email, profile: user}, function(error) {
