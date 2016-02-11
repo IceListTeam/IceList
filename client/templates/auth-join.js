@@ -5,19 +5,20 @@ Template.join.onCreated(function() {
 });
 
 
-
+/* can't get this to work maybe try adding the original classes back on the input fields
+(look on github at master)
 
 Template.join.onRendered(function() {
-  $('.input-symbol').validate();
+  $('#bobtest').validate({
   console.log("hey im in onRendered");
-});
-  /*
-  {
+
     rules: {
       password: {
         minlength: 6
       }
     },
+  });
+
     messages: {
       password: {
         minlength: "your password must be 6"
@@ -83,6 +84,24 @@ Template.join.events({
       errors.confirm = 'Please confirm your password';
     }
 
+    
+    if( confPass.length < 8 )
+    {
+       errors.confirm = 'Password must be at least 8 characters long.';
+
+    }
+
+   //test password complexity (this ensures new users passwords contain an uppercase, lowercase, and number)
+   var hasUpperCase = /[A-Z]/.test(confPass);
+   console.log(hasUpperCase);
+   var hasLowerCase = /[a-z]/.test(confPass);
+   console.log(hasLowerCase);
+   var hasNumbers = /\d/.test(confPass);
+   console.log(hasNumbers);
+   if(hasUpperCase + hasLowerCase + hasNumbers < 3)
+      errors.confirm = 'Password must contain at least 8 characters, contain a number, uppercase letter, and lowercase letter';
+
+
     Session.set(ERRORS_KEY, errors);
     if (_.keys(errors).length) {
       return;
@@ -98,10 +117,6 @@ Template.join.events({
       email:email
     }
 
-
-
-
-  
 
     Accounts.createUser({ name: firstName + lastName , password: inPass , email: email, profile: user}, function(error) {
       if (error) {
