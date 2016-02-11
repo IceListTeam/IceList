@@ -1,5 +1,5 @@
 Template.forgotPassword.events({
-'submit .btn-primary': function(event, template) {
+'submit': function(event, template) {
 	console.log('hey in forgotPassword client');
 
 	event.preventDefault();
