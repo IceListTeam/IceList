@@ -21,5 +21,16 @@ Accounts.emailTemplates.verifyEmail.subject = function(user) {
     sendVerificationEmail: true
   });
 
+  //for forgot password email   
+  Accounts.emailTemplates.resetPassword.text = function (user, url) {
+     url = url.replace('#/', '')
+     return " To reset your password, simply click the link below:\n\n"
+       + url;
+  };
+
+
+
+
+
 });
 

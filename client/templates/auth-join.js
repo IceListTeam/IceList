@@ -5,48 +5,6 @@ Template.join.onCreated(function() {
 });
 
 
-/* can't get this to work maybe try adding the original classes back on the input fields
-(look on github at master)
-
-Template.join.onRendered(function() {
-  $('#bobtest').validate({
-  console.log("hey im in onRendered");
-
-    rules: {
-      password: {
-        minlength: 6
-      }
-    },
-  });
-
-    messages: {
-      password: {
-        minlength: "your password must be 6"
-      }
-    }
-  });
-});
-*/
-/*
-      },
-      password: {
-        required: true,
-   
-      }
-    },
-    messages: {
-      email: {
-        required: "Please enter your email address."
-       
-      },
-      password: {
-        required: "Please enter your password"
-      }
-    }
-  });
-});
-*/
-
 Template.join.helpers({
   errorMessages: function() {
     return _.values(Session.get(ERRORS_KEY));
