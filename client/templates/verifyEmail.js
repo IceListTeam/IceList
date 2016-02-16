@@ -1,7 +1,6 @@
 
   Template.signin.onCreated(function() {
     if (Accounts._verifyEmailToken) {
-      console.log("in join.onCreated Accounts Verify EMAIL!!!");
       Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {
         if (err != null) {
           if (err.message = 'Verify email link expired [403]') {

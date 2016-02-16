@@ -47,6 +47,8 @@ Template.forgotPassword.events({
 	
 	var options = {};
 	options.email = email;
+
+	//send an email to the user
 	Accounts.forgotPassword(options, function(error){  
 	  if (error) { 
 		console.log(error);
@@ -55,7 +57,10 @@ Template.forgotPassword.events({
 	  } 
 	});
 
-	//call method on server called Accounts.sendResetPasswordEmail(userId, [email])
+	if (Accounts._resetPasswordToken) {
+       Session.set('resetPassword', Accounts._resetPasswordToken);
+    }
+	
 
 
   }
