@@ -15,10 +15,12 @@ Accounts.emailTemplates.verifyEmail.subject = function(user) {
     return 'Thank you for registering.  Please click on the following link to verify your email address: \r\n' + url;
   };
 
+
    //for forgot password email
     Accounts.emailTemplates.resetPassword.subject = function(user) {
      return 'Reset Your Password on IceList';
    };
+
   Accounts.emailTemplates.resetPassword.text = function (user, url) {
      url = url.replace('#/', '')
      url = url.replace('reset-password','resetPassword')

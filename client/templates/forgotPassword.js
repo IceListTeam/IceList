@@ -19,10 +19,10 @@ Template.forgotPassword.events({
 'submit': function(event, template) {
 	
 	event.preventDefault();
-    var email = template.$('[name=email]').val();
+    var emailGet = template.$('[name=email]').val();
 	
 	
-       if (/@pitt\.edu$/.test(email.toLowerCase())) 
+       if (/@pitt\.edu$/.test(emailGet.toLowerCase())) 
 	  {
 		//return true;
 		domainTest = true;
@@ -40,15 +40,12 @@ Template.forgotPassword.events({
 	  
     var errors = {};
 	
-	if (! email) {
+	if (! emailGet) {
       errors.email = 'Email is required';
     }
 	
-	
-	var options = {};
-	options.email = email;
+	var options = { email: emailGet };
 
-	//send an email to the user
 	Accounts.forgotPassword(options, function(error){  
 	  if (error) { 
 		console.log(error);
