@@ -1,6 +1,6 @@
 
 Meteor.startup(function () {
-process.env.MAIL_URL = 'smtp://icelistMail:Password1@smtp.sendgrid.net:587';
+process.env.MAIL_URL = Meteor.settings.MAIL_URL;
 
 Accounts.emailTemplates.from = 'icelist@pitt.edu';
 Accounts.emailTemplates.siteName = 'icelist.meteor.com';
