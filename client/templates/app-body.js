@@ -114,6 +114,9 @@ Template.appBody.events({
   'click .js-update': function() {
      Router.go('update');
   },
+  'click .js-newPost': function() {
+     Router.go('newPost');
+  },
 
   'click .js-logout': function() {
     Meteor.logout();
