@@ -111,6 +111,10 @@ Template.appBody.events({
     Session.set(MENU_KEY, false);
   },
 
+  'click .js-update': function() {
+     Router.go('update');
+  },
+
   'click .js-logout': function() {
     Meteor.logout();
 
