@@ -66,7 +66,16 @@ Template.update.events({
       phone: phone,
       email:email
     }
+/*
+    if (inPass !== "" && confPass !== "")
+    {
+      console.log("in password update ");
 
+      Meteor.call('changeMyPassword', Meteor.user()._id, inPass));
+      //call method on server to reset password
+      //Accounts.setPassword(Meteor.user()._id, inPass);
+    }
+*/
 	Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.firstname": firstName, "profile.lastname": lastName, "profile.name": firstName + lastName, "profile.birthday": birthday, "profile.major": major, "profile.gradDate": gradDate, "profile.phone": phone, "profile.email": email }});
       Router.go('home');
 	}
