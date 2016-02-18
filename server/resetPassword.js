@@ -5,6 +5,7 @@ Meteor.methods({
 
     'changeMyPassword' : function(userId, password){
     	console.log("resetting password...");
+    	//console.log(Meteor.user()._id)
        Accounts.setPassword(userId, password);
 
     }

@@ -10,10 +10,6 @@ Template.update.onCreated(function() {
 
 Template.update.onRendered(function() {
   $('.input-symbol').validate();
-  console.log("hey im in onRendered");
- 
-
-
 });
  
 
@@ -44,8 +40,8 @@ Template.update.events({
     var major = template.$('[name=Major]').val();
     var gradDate = template.$('[name=GradDate]').val();
     var phone = template.$('[name=Phone]').val();
-    var inPass = template.$('[name=password]').val();
-    var confPass = template.$('[name=confirm]').val();
+    var oldPass = template.$('[name=password]').val();
+    var newPass = template.$('[name=confirm]').val();
 
     var errors = {};
     var user;
@@ -66,17 +62,13 @@ Template.update.events({
       phone: phone,
       email:email
     }
-/*
-    if (inPass !== "" && confPass !== "")
-    {
-      console.log("in password update ");
 
-      Meteor.call('changeMyPassword', Meteor.user()._id, inPass));
-      //call method on server to reset password
-      //Accounts.setPassword(Meteor.user()._id, inPass);
+    if (oldPass !== "" && newPass !== "")
+    {
+      Accounts.changePassword(oldPass, newPass); 
     }
-*/
-	Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.firstname": firstName, "profile.lastname": lastName, "profile.name": firstName + lastName, "profile.birthday": birthday, "profile.major": major, "profile.gradDate": gradDate, "profile.phone": phone, "profile.email": email }});
+
+	//Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.firstname": firstName, "profile.lastname": lastName, "profile.name": firstName + lastName, "profile.birthday": birthday, "profile.major": major, "profile.gradDate": gradDate, "profile.phone": phone, "profile.email": email }});
       Router.go('home');
 	}
 });
