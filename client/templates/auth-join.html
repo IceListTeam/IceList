@@ -20,48 +20,61 @@
             </div>
           {{/if}}
 
+
+          <!-- <div class="ui fluid left icon input {{errorClass 'email'}}">
+            <input type="email" name="email" placeholder="Your Email" />
+            <i class="mail icon"></i>
+          </div> -->
+
+          <!--
           <div class="input-symbol">
             <input type="email" name="email" placeholder="Your Email" required/>
           </div>
+  
+      -->
+          <div class="ui fluid left icon input">
+            <input type="email" name="email" placeholder="Your Email" required/>
+            <i class="mail icon"></i>
+          </div>
 
-          <div class="input-symbol">
-            First Name
+
+          <div class="ui fluid left icon input">
             <input type="text" name="FirstName" placeholder="First Name" required  /> 
           </div>
 
-          <div class="input-symbol">
-            Last Name
+          <div class="ui fluid left icon input">
             <input type="text" name="LastName" placeholder="Last Name" required />
             <span title="Last Name"></span>
           </div>
 
-          <div class="input-symbol">
+          <div class="ui fluid left icon input">
             <input type="date" name="Birthday" placeholder="Birthday" />
+            <i class="birthday icon"></i>
           </div>
 
-          <div class="input-symbol">
+          <div class="ui fluid left icon input">
             <input type="text" name="Major" placeholder="Major" />
-            <span title="Your Major"></span>
+            <i class="book icon"></i>
           </div>
 
-          <div class="input-symbol">
-            Graduation Date
-            <input type="date" name="GradDate" placeholder="Graduation Date (4/25/2015)" required/>
+          <div class="ui fluid left icon input">
+            <input type="date" name="GradDate" required/>
+            <i class="student icon"></i>
           </div>
 
-          <div class="input-symbol">
-            Phone
+          <div class="ui fluid left icon input">
             <input type="text" name="Phone" placeholder="Phone" />
+            <i class="phone icon"></i>
           </div>
 
-          <div class="input-symbol">
-            Password
+          <div class="ui fluid left icon input">
             <input type="password" name="password" placeholder="Password" required/>
+            <i class="asterisk icon"></i>
           </div>
 
-          <div class="input-symbol">
-            Confirm
+          <div class="ui fluid left icon input">
             <input type="password" name="confirm" placeholder="Confirm Password" required/>
+            <i class="asterisk icon"></i>
           </div>
 
           <button type="submit" class="btn-primary">Join Now</button>
