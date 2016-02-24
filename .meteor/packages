@@ -23,3 +23,12 @@ rajit:bootstrap3-datepicker
 mizzao:bootstrap-3
 mizzao:jquery-ui
 semantic:ui
+utilities:avatar
+selaias:avatar-manager
+selaias:avatar-upload
+cfs:standard-packages
+cfs:filesystem
+cfs:s3
+cfs:gridfs
+raix:ui-dropped-event
+reactive-var

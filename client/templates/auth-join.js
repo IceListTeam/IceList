@@ -11,6 +11,9 @@ Template.join.helpers({
   },
   errorClass: function(key) {
     return Session.get(ERRORS_KEY)[key] && 'error';
+  },
+  "files": function(){
+	  return S3.collection.fin();
   }
 });
 
@@ -72,11 +75,12 @@ Template.join.events({
       major: major,
       gradDate: gradDate,
       phone: phone,
-      email:email
+      email:email,
+	  avatar:avatar
     }
 
 
-    Accounts.createUser({ name: firstName + lastName , password: inPass , email: email, profile: user}, function(error) {
+    Accounts.createUser({ name: firstName + lastName , password: inPass , email: email, image:picture, profile: user}, function(error) {
       if (error) {
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }

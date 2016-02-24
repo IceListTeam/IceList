@@ -117,6 +117,11 @@ Template.appBody.events({
   'click .js-newPost': function() {
      Router.go('newPost');
   },
+  
+  'click .js-upload': function() {
+	  Router.go('upload');
+  },
+  
 
   'click .js-logout': function() {
     Meteor.logout();

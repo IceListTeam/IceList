@@ -2,7 +2,7 @@ var ERRORS_KEY = 'updateErrors';
 
 
 Template.update.onCreated(function() {
-  Session.set(ERRORS_KEY, {});
+  Session.set(ERRORS_KEY, {});	
 });
 
 
@@ -31,6 +31,7 @@ Template.update.helpers({
 });
 
 Template.update.events({
+	
   'submit': function(event, template) {
     event.preventDefault();
     var email = template.$('[name=email]').val();
@@ -60,7 +61,8 @@ Template.update.events({
       major: major,
       gradDate: gradDate,
       phone: phone,
-      email:email
+      email:email,
+	  picture:picture
     }
 
     if (oldPass !== "" && newPass !== "")
