@@ -8,7 +8,7 @@ Meteor.methods({
 
 	Listings.insert({
       desc: desc,
-	  category: category;
+	  category: category,
 	  attend: numPeople,
 	  time: time,
 	  privacy: privacy,
@@ -29,7 +29,7 @@ Meteor.methods({
 
 	Listings.insert({
       desc: desc,
-	  category: category;
+	  category: category,
 	  price: price,
 	  time: time,
 	  quantity: quantity,
@@ -48,7 +48,7 @@ Meteor.methods({
 
   },
 
-  editEvent: function (taskId, ) {
+  editEvent: function (taskId) {
 
     Tasks.update(taskId, { $set: { checked: setChecked} });
 

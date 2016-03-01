@@ -37,7 +37,7 @@
           </div>
 
           <div class="ui fluid left icon input">
-            <input type="date" name="Birthday" placeholder="Birthday" />
+            <input class="ui dropdown datetimepicker" type="text" name="Birthday" placeholder="Birthday" />
             <i class="birthday icon"></i>
           </div>
 
@@ -47,7 +47,7 @@
           </div>
 
           <div class="ui fluid left icon input">
-            <input type="date" name="GradDate" required/>
+            <input id="datetimepicker3" class="ui dropdown datetimepicker" type="text" name="GradDate" placeholder="Graduation Date" required />
             <i class="student icon"></i>
           </div>
 
@@ -73,4 +73,5 @@
       <a href="{{pathFor 'signin'}}" class="link-auth-alt">Have an account? Sign in</a>
     </div>
   </div>
+  <script type="text/javascript"> $(function () { $('#datetimepicker3').datetimepicker({ format: 'MM/dd/YYYY' }); }); </script>
 </template>
