@@ -23,3 +23,5 @@ rajit:bootstrap3-datepicker
 mizzao:bootstrap-3
 mizzao:jquery-ui
 semantic:ui
+cfs:standard-packages
+cfs:filesystem
