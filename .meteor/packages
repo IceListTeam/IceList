@@ -21,4 +21,4 @@ email
 semantic:ui
 cfs:standard-packages
 cfs:filesystem
-sarasate:semantic-ui-datetimepicker
+rajit:bootstrap3-datepicker

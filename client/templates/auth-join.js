@@ -14,6 +14,14 @@ Template.join.helpers({
   },
   errorClass: function(key) {
     return Session.get(ERRORS_KEY)[key] && 'error';
+  },
+  yearHelper: function() {
+		yearList = [];
+		for( i = 2016 ; i >= 1990 ; i-- )
+		{
+			yearList.push(i);
+		}
+		return yearList;
   }
 });
 
