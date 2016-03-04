@@ -15,3 +15,20 @@ Meteor.publish('todos', function(listId) {
 
   return Todos.find({listId: listId});
 });
+
+Meteor.publish('messages', function(listId) {
+	if (this.userId) {
+		return Messages.find({ $or: [ { personA: this.userId }, { personB: this.userId } ] } );
+	}else{
+		
+		return null;
+	}
+});
+
+Meteor.publish('messagesDetails', function() {
+		return MessagesDetails.find({});
+});
+
+Meteor.publish("directory", function () {
+return Meteor.users.find({}, {fields: {emails: 1, profile: 1}});
+});

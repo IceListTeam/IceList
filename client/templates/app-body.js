@@ -114,6 +114,9 @@ Template.appBody.events({
   'click .js-update': function() {
      Router.go('update');
   },
+  'click .js-messages': function() {
+     Router.go('messages');
+  },
   'click .js-newPost': function() {
      Router.go('newPost');
   },
