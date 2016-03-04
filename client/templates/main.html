@@ -1,0 +1,26 @@
+<template name="main">
+<div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+	
+   <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">Main Page</h1>
+        <p class="subtitle-auth" >Sorry, the main page is currently under construction</p>	
+		
+          {{#if errorMessages}}
+            <div class="list-errors">
+              {{#each errorMessages}}
+                <div class="list-item">{{this}}</div>
+              {{/each}}
+            </div>
+          {{/if}}
+
+        </div>
+  </div>
+</div>
+
+</template>

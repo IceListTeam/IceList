@@ -4,6 +4,9 @@ Template.join.onCreated(function() {
   Session.set(ERRORS_KEY, {});
 });
 
+Template.join.onRendered(function() {
+	this.$('.datetimepicker').datetimepicker();
+});
 
 Template.join.helpers({
   errorMessages: function() {
@@ -11,6 +14,14 @@ Template.join.helpers({
   },
   errorClass: function(key) {
     return Session.get(ERRORS_KEY)[key] && 'error';
+  },
+  yearHelper: function() {
+		yearList = [];
+		for( i = 2016 ; i >= 1990 ; i-- )
+		{
+			yearList.push(i);
+		}
+		return yearList;
   }
 });
 

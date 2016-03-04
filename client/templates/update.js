@@ -5,13 +5,9 @@ Template.update.onCreated(function() {
   Session.set(ERRORS_KEY, {});
 });
 
-
-
-
 Template.update.onRendered(function() {
-  $('.input-symbol').validate();
+	this.$('.datetimepicker').datetimepicker();
 });
- 
 
 Template.update.helpers({
   userHelp: function(varn) {
@@ -23,11 +19,6 @@ Template.update.helpers({
   errorClass: function(key) {
     return Session.get(ERRORS_KEY)[key] && 'error';
   }
-  
-  
-  
-
-
 });
 
 Template.update.events({
@@ -68,7 +59,7 @@ Template.update.events({
       Accounts.changePassword(oldPass, newPass); 
     }
 
-	//Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.firstname": firstName, "profile.lastname": lastName, "profile.name": firstName + lastName, "profile.birthday": birthday, "profile.major": major, "profile.gradDate": gradDate, "profile.phone": phone, "profile.email": email }});
+	  Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.firstname": firstName, "profile.lastname": lastName, "profile.name": firstName + lastName, "profile.birthday": birthday, "profile.major": major, "profile.gradDate": gradDate, "profile.phone": phone, "profile.email": email }});
       Router.go('home');
 	}
 });
