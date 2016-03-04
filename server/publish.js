@@ -16,6 +16,7 @@ Meteor.publish('todos', function(listId) {
   return Todos.find({listId: listId});
 });
 
+<<<<<<< HEAD
 Meteor.publish('messages', function(listId) {
 	if (this.userId) {
 		return Messages.find({ $or: [ { personA: this.userId }, { personB: this.userId } ] } );
@@ -32,3 +33,13 @@ Meteor.publish('messagesDetails', function() {
 Meteor.publish("directory", function () {
 return Meteor.users.find({}, {fields: {emails: 1, profile: 1}});
 });
+
+Meteor.publish('images', function(limit) {
+  check(limit, Number);
+
+  return Images.find({}, {
+    limit: limit
+  });
+});
+
+

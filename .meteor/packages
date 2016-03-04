@@ -22,4 +22,12 @@ semantic:ui
 cfs:standard-packages
 cfs:filesystem
 rajit:bootstrap3-datepicker
-
+utilities:avatar
+selaias:avatar-manager
+selaias:avatar-upload
+cfs:standard-packages
+cfs:filesystem
+cfs:s3
+cfs:gridfs
+raix:ui-dropped-event
+reactive-var
