@@ -1,0 +1,9 @@
+AccountController = RouteController.extend({
+    verifyEmail: function () {
+        Accounts.verifyEmail(this.params.token, function () {
+            toastr.success("Email verified");
+            alert(Meteor.user()._id);
+            Meteor.call("createStripeCustomer", Meteor.user()._id)
+        });
+    }
+});

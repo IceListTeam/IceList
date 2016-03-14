@@ -1,0 +1,49 @@
+<template name="newPost">
+
+<div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+	
+ <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">New Post</h1>
+        <p class="subtitle-auth" >Select the category of the new post.</p>
+        <form>		
+		
+          {{#if errorMessages}}
+            <div class="list-errors">
+              {{#each errorMessages}}
+                <div class="list-item">{{this}}</div>
+              {{/each}}
+            </div>
+          {{/if}}
+
+          Insert links here to different categories
+
+          </form>
+	
+	<form>	  
+	<div class="input-symbol">
+       <input type="textarea" name="desc" placeholder="Description"/>
+	   <select name="category">
+			<option value = "Event">Event</option>
+			<option value = "Listing">Listing</option>
+	   </select>
+	   <input type ="textarea" name="attend" placeholder="Attending"/>
+	   <input type = "textarea" name="time" placeholder="Time"/>
+	   <input type="textarea" name="privacy" placeholder="Privacy"/>
+	   <input type="textarea" name="loc" placeholder="location"/>
+	   <input type="textarea" name="stat" placeholder="status"/>
+	   <input type="submit" name = "button" value = "create"/>
+	</div>
+    </form>
+
+  </div>
+</div>
+</div>
+
+
+</template>

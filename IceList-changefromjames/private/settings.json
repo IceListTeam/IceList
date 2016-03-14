@@ -1,0 +1,3 @@
+{
+  "MAIL_URL": "smtp://ilmail:Spring2016@smtp.sendgrid.net:587"
+}

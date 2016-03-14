@@ -1,0 +1,76 @@
+<template name="join">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">Join.</h1>
+        <p class="subtitle-auth" >Joining allows you to view and publish campus classifieds</p>
+
+        <form>
+          {{#if errorMessages}}
+            <div class="list-errors">
+              {{#each errorMessages}}
+                <div class="list-item">{{this}}</div>
+              {{/each}}
+            </div>
+          {{/if}}
+
+
+          <div class="ui fluid left icon input">
+            <input type="email" name="email" placeholder="Your Email" required/>
+            <i class="mail icon"></i>
+          </div>
+
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="FirstName" placeholder="First Name" required  /> 
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="LastName" placeholder="Last Name" required />
+            <span title="Last Name"></span>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="date" name="Birthday" placeholder="Birthday" />
+            <i class="birthday icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="Major" placeholder="Major" />
+            <i class="book icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="date" name="GradDate" required/>
+            <i class="student icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="Phone" placeholder="Phone" />
+            <i class="phone icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="password" name="password" placeholder="Password" required/>
+            <i class="asterisk icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="password" name="confirm" placeholder="Confirm Password" required/>
+            <i class="asterisk icon"></i>
+          </div>
+
+          <button type="submit" class="btn-primary">Join Now</button>
+        </form>
+      </div>
+
+      <a href="{{pathFor 'signin'}}" class="link-auth-alt">Have an account? Sign in</a>
+    </div>
+  </div>
+</template>

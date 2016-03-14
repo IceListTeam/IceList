@@ -1,0 +1,83 @@
+<template name="update">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">Update.</h1>
+        <p class="subtitle-auth" >Update your account information below. </p>
+		{{#with currentUser}}
+			<div>
+				You are logged in {{currentUser.profile.email}}
+			</div>
+		{{/with}}
+		
+
+        <form>
+          {{#if errorMessages}}
+            <div class="list-errors">
+              {{#each errorMessages}}
+                <div class="list-item">{{this}}</div>
+              {{/each}}
+            </div>
+          {{/if}}
+
+
+          <div class="ui fluid left icon input">
+            <input type="email" name="email" placeholder="Your Email"  value="{{userHelp "email"}}" required/>
+            <i class="mail icon"></i>
+          </div>
+
+          <div class="input-symbol">
+            <input type="text" name="FirstName" placeholder="First Name" value="{{userHelp "firstname"}}" required  /> 
+             
+          </div>
+
+          <div class="input-symbol">
+            <input type="text" name="LastName" placeholder="Last Name" value="{{userHelp "lastname"}}" required />
+            <span title="Last Name"></span>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="Birthday" placeholder="Birthday"  value="{{userHelp "birthday"}}"/>
+            <i class="birthday icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="Major" placeholder="Major" value="{{userHelp "major"}}" />
+            <i class="book icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" id="my-datepicker" name="GradDate" placeholder="Graduation Date (4/25/2015)" value="{{userHelp "gradDate"}}" required/>
+            <i class="student icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="Phone" placeholder="Phone" value="{{userHelp "phone"}}" />
+            <i class="phone icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="password" name="password" placeholder="Old Password" />
+            <i class="asterisk icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="password" name="confirm" placeholder="New Password" />
+            <i class="asterisk icon"></i>
+          </div>
+
+
+
+          <button type="submit" class="btn-primary">Update</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</template>
