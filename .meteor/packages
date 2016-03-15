@@ -19,8 +19,6 @@ tracker
 check
 email
 semantic:ui
-cfs:standard-packages
-cfs:filesystem
 rajit:bootstrap3-datepicker
 utilities:avatar
 selaias:avatar-manager

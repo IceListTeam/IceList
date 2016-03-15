@@ -16,7 +16,7 @@ Meteor.publish('todos', function(listId) {
   return Todos.find({listId: listId});
 });
 
-<<<<<<< HEAD
+
 Meteor.publish('messages', function(listId) {
 	if (this.userId) {
 		return Messages.find({ $or: [ { personA: this.userId }, { personB: this.userId } ] } );
