@@ -88,12 +88,11 @@ Template.join.events({
       major: major,
       gradDate: gradDate,
       phone: phone,
-      email:email,
-	  avatar:avatar
+      email:email
     }
 
 
-    Accounts.createUser({ name: firstName + lastName , password: inPass , email: email, image:picture, profile: user}, function(error) {
+    Accounts.createUser({ name: firstName + lastName , password: inPass , email: email, profile: user}, function(error) {
       if (error) {
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }
