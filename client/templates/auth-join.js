@@ -16,9 +16,9 @@ Template.join.helpers({
     return Session.get(ERRORS_KEY)[key] && 'error';
   },
 
-  yearHelper: function() {
+  yearHelper: function(maxdate) {
 		yearList = [];
-		for( i = 2016 ; i >= 1990 ; i-- )
+		for( i = maxdate ; i >= 1990 ; i-- )
 		{
 			yearList.push(i);
 		}

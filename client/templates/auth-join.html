@@ -95,7 +95,7 @@
 				<div class="field">
 				  <select class="ui search dropdown" name="birthyear">
 					<option value="">Year</option>
-					{{#each yearHelper}}
+					{{#each yearHelper "2016"}}
 						<option value="{{this}}">{{this}}</option>
 					{{/each}}	
 				  </select>
@@ -164,7 +164,7 @@
 				<div class="field">
 				  <select class="ui search dropdown" name="gradyear">
 					<option value="">Year</option>
-					{{#each yearHelper}}
+					{{#each yearHelper "2020"}}
 						<option value="{{this}}">{{this}}</option>
 					{{/each}}	
 				  </select>
