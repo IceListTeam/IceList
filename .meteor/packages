@@ -11,7 +11,7 @@ mongo
 mobile-experience
 standard-minifiers
 less
-iron:router@0.9.4
+iron:router
 accounts-password
 jquery
 tracker

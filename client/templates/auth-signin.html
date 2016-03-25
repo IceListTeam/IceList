@@ -11,7 +11,7 @@
         <h1 class="title-auth">Sign In.</h1>
         <p class="subtitle-auth" >Sign in to IceList</p>
 
-        <form>
+        <form class="ui form">
           {{#if errorMessages}}
             <div class="list-errors">
               {{#each errorMessages}}
@@ -19,18 +19,24 @@
               {{/each}}
             </div>
           {{/if}}
-
-          <div class="ui fluid left icon input {{errorClass 'email'}}">
-            <input type="email" name="email" placeholder="Your Email" />
-            <i class="mail icon"></i>
+          
+          <div class="field">
+            <div class="ui fluid left icon input {{errorClass 'email'}}">
+              <input type="email" name="email" placeholder="Your Email" />
+              <i class="mail icon"></i>
+            </div>
           </div>
 
-          <div class="ui fluid left icon input {{errorClass 'password'}}">
-            <input type="password" name="password" placeholder="Password" />
-            <i class="asterisk icon"></i>
+          <div class="field">
+            <div class="ui fluid left icon input {{errorClass 'password'}}">
+              <input type="password" name="password" placeholder="Password" />
+              <i class="asterisk icon"></i>
+            </div>
           </div>
 
-          <button type="submit" class="btn-primary">Sign in</button>
+          <div class="field">
+            <button type="submit" class="btn-primary">Sign in</button>
+          </div>
         </form>
       </div>
 

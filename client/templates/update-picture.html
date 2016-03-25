@@ -1,0 +1,52 @@
+<template name="update-picture">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">Update.</h1>
+        <p class="subtitle-auth" >Update your profile picture below.</p>
+		{{#with currentUser}}
+			<div>
+				You are logged in {{currentUser.profile.email}}
+			</div>
+		{{/with}}
+
+        <form class="ui form">
+          {{#if errorMessages}}
+            <div class="list-errors">
+              {{#each errorMessages}}
+                <div class="list-item">{{this}}</div>
+              {{/each}}
+            </div>
+          {{/if}}
+          
+          <div class="ui two item menu">
+            <a class="item" href="{{pathFor route="update"}}">Account Info</a>
+            <a class="active item">Profile Picture</a>
+          </div>
+
+          <div class="item">
+            {{#if userimage}}
+              <div>
+                <a href="{{this.profile.image}}" target="_blank"><img src="{{this.url store='images'}}" alt="" class="thumbnail" /></a>
+              </div>
+            {{/if}}
+          </div>
+          
+          <div class="item">
+            <div class="ui fluid left icon input">
+              <input type="file" name="myFileInput" placeholder="Your Profile Picture" required/>
+              <i class="mail icon"></i>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</template>

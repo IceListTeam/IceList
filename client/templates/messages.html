@@ -1,39 +1,39 @@
 <template name="messages">
 <a href="/messages">Back To Messages</a>
 {{#if _id}}
-	<ul>
-	{{#each messageDetails}}
-		<li class="{{otherPerson userId receiver}}">{{detailText}}</li>		
-	{{else}}
-		Opps, this conversation has no messages.
-	{{/each}}
-	</ul>
-	<textarea name="replyTextArea"></textarea> 
-	<input type="hidden" name="receiver" value="{{receiver}}">
-	<button type="button" class="send_reply">Reply</button>
+  <ul>
+  {{#each messageDetails}}
+    <li class="{{otherPerson userId receiver}}">{{detailText}}</li>   
+  {{else}}
+    Opps, this conversation has no messages.
+  {{/each}}
+  </ul>
+  <textarea name="replyTextArea"></textarea> 
+  <input type="hidden" name="receiver" value="{{receiver}}">
+  <button type="button" class="send_reply">Reply</button>
 {{else}}
-	{{#if _new}}
-		Create New Message
-		<ul>
-		{{#each userss}}
-			<li>UserID: {{_id}} {{profile.firstname}} {{profile.lastname}} 
-			 <input type="radio" name="adduser" value="{{_id}}">			</li>
-		{{/each}}
-		</ul>
-		
-		<textarea name="newTextArea"></textarea> 
-		<button type="button" class="send_message">New Conversation</button>
-		
-	{{else}}	
-		<ul>
-		{{#each messageListss}}
-			<li>Message:{{#if equals userId personA}}{{personB}}{{else}}{{personA}}{{/if}} <a href="messages/{{_id}}">Details</a></li>
-		{{else}}
-			You Have No Messages Right Now
-		{{/each}}
-		</ul>
-		
-	{{/if}}
+  {{#if _new}}
+    Create New Message
+    <ul>
+    {{#each userss}}
+      <li>UserID: {{_id}} {{profile.firstname}} {{profile.lastname}} 
+       <input type="radio" name="adduser" value="{{_id}}">      </li>
+    {{/each}}
+    </ul>
+    
+    <textarea name="newTextArea"></textarea> 
+    <button type="button" class="send_message">New Conversation</button>
+    
+  {{else}}  
+    <ul>
+    {{#each messageListss}}
+      <li>Message:{{#if equals userId personA}}{{personB}}{{else}}{{personA}}{{/if}} <a href="messages/{{_id}}">Details</a></li>
+    {{else}}
+      You Have No Messages Right Now
+    {{/each}}
+    </ul>
+    
+  {{/if}}
 {{/if}}
   
  

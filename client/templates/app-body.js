@@ -122,7 +122,7 @@ Template.appBody.events({
   },
   
   'click .js-upload': function() {
-	  Router.go('upload');
+    Router.go('upload');
   },
   
 
