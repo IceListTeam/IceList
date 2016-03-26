@@ -36,11 +36,11 @@ Template.signin.events({
     }
     
     Meteor.loginWithPassword(email, password, function(error) {
-      if (error.reason == 'mustverify') {
-        Router.go('/thankyou/new-user');
-        return true;
-      }
       if (error) {
+        if (error.reason == 'mustverify') {
+          Router.go('/thankyou/new-user');
+          return true;
+        }
         return Session.set(ERRORS_KEY, {'none': error.reason});
       }
       

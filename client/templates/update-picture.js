@@ -23,7 +23,7 @@ Template.myForm.events({
            // handle success depending what you need to do
           var userId = Meteor.userId();
           var imagesURL = {
-            “profile.image”: “/cfs/files/images/“ + fileObj._id
+            "profile.image": "/cfs/files/images/" + fileObj._id
           };
           Meteor.users.update(userId, {$set: imagesURL});
         }
