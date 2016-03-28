@@ -1,0 +1,207 @@
+<template name="join">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">Join.</h1>
+        <p class="subtitle-auth" >Joining allows you to view and publish campus classifieds</p>
+    <form class="ui form" >
+      {{#if errorMessages}}
+      <div class="list-errors">
+        {{#each errorMessages}}
+        <div class="list-item">{{this}}</div>
+        {{/each}}
+      </div>
+      {{/if}}
+
+      <div class="field">
+        <div class="ui fluid left icon input">
+        <input type="email" name="email" placeholder="Your Email" required />
+        <i class="mail icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui fluid left icon input">
+        <i class="user icon"></i>
+        <input type="text" name="FirstName" placeholder="First Name" required  /> 
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui fluid left icon input">
+        <i class="user icon"></i>
+        <input type="text" name="LastName" placeholder="Last Name" required />
+        <span title="Last Name"></span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Birthday</label>
+        <div class="three fields">
+          <div class="field">
+            <select class="ui search dropdown" name="birthmonth" required >
+            <option value="">Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+            </select>
+          </div>
+          <div class="field">
+            <select class="ui search dropdown" name="birthday" required >
+            <option value="">Day</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+            </select>
+          </div>
+          <div class="field">
+            <select class="ui search dropdown" name="birthyear" required >
+            <option value="">Year</option>
+            {{#each yearHelper "2016"}}
+              <option value="{{this}}">{{this}}</option>
+            {{/each}} 
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui fluid left icon input">
+        <input type="text" name="Major" placeholder="Major" required />
+        <i class="student icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <label>Graduation Date</label>
+        <div class="three fields">
+          <div class="field">
+            <select class="ui search dropdown" name="gradmonth" required >
+            <option value="">Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+            </select>
+          </div>
+          <div class="field">
+            <select class="ui search dropdown" name="gradday" required >
+            <option value="">Day</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+            </select>
+          </div>
+          <div class="field">
+            <select class="ui search dropdown" name="gradyear" required >
+            <option value="">Year</option>
+            {{#each yearHelper "2020"}}
+              <option value="{{this}}">{{this}}</option>
+            {{/each}} 
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui fluid left icon input">
+        <input type="text" name="Phone" placeholder="Phone" required />
+        <i class="phone icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui fluid left icon input">
+        <input type="password" name="password" placeholder="Password" required />
+        <i class="asterisk icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui fluid left icon input">
+        <input type="password" name="confirm" placeholder="Confirm Password" required />
+        <i class="asterisk icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <button type="submit" class="btn-primary">Join Now</button>
+      </div>
+      <div class="field">
+        <a href="{{pathFor 'signin'}}" class="link-auth-alt">Have an account? Sign in</a>
+      </div>
+    </form>
+      </div>
+    </div>
+  </div>
+</template>

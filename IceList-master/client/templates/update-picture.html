@@ -1,0 +1,45 @@
+<template name="updatepicture">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">Update.</h1>
+        <p class="subtitle-auth" >Update your profile picture below.</p>
+		{{#with currentUser}}
+			<div>
+				You are logged in {{currentUser.profile.email}}
+			</div>
+		{{/with}}
+
+        <form class="ui form" id="picupload">
+          {{#if errorMessages}}
+            <div class="list-errors">
+              {{#each errorMessages}}
+                <div class="list-item">{{this}}</div>
+              {{/each}}
+            </div>
+          {{/if}}
+          
+          <div class="ui two item menu">
+            <a class="item" href="/update">Account Info</a>
+            <a class="active item">Profile Picture</a>
+          </div>
+          
+          <div class="item">
+            {{#each userImage}}
+            <div id="dropzone" class="dropzone"><div class="well well-drop-zone"><center><img class="ui small circular image" src="{{this.url store="images"}}"/></center></div></div>
+            {{/each}}
+            <p>Drop an image above to upload a new avatar.</p>
+          </div>
+          
+        </form>
+      </div>
+
+    </div>
+  </div>
+</template>
