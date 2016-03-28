@@ -34,12 +34,8 @@ Meteor.publish("directory", function () {
 return Meteor.users.find({}, {fields: {emails: 1, profile: 1}});
 });
 
-Meteor.publish('images', function(limit) {
-  check(limit, Number);
-
-  return Images.find({}, {
-    limit: limit
-  });
+Meteor.publish('Images', function() {
+  return Images.find({});
 });
 
 

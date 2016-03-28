@@ -1,33 +1,35 @@
-Template.upload-image.helpers({
-  userimage: function () {
-    var i = users.find({ $query: {'_id': Meteor.userId} }); // Where Images is an FS.Collection instance
-    if(i["profile.image"])
+Template.updatepicture.helpers({
+  userImage: function () {
+    /*if( Meteor.user().profile["picture"] != null)
     {
-      return i;
-    }
-    else
-    {
-      return null;
-    }
+      var img = Images.findOne( {"_id": Meteor.user().profile["picture"] } );
+      if( img )
+      {
+        return img;
+      }
+      else
+      {
+        Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.picture": null }});
+        return Images.findOne( { _id : "YBtQ8Wb4YDHRJjHTd" } );
+      }
+    }*/
+    return Images.find( { "_id" : "YBtQ8Wb4YDHRJjHTd" });
   }
 });
 
-Template.myForm.events({
-  'change .myFileInput': function(event, template) {
-    var files = event.target.files;
-    for (var i = 0, ln = files.length; i < ln; i++) {
-      Images.update(files[i], function (err, fileObj) {
-        if (err){
-           // handle error
-        } else {
-           // handle success depending what you need to do
-          var userId = Meteor.userId();
-          var imagesURL = {
-            "profile.image": "/cfs/files/images/" + fileObj._id
-          };
-          Meteor.users.update(userId, {$set: imagesURL});
-        }
+Template.updatepicture.events({
+  'dropped #dropzone': function(e) {
+      FS.Utility.eachFile(e, function(file) {
+        var newFile = new FS.File(file);
+        
+        Images.insert(newFile, function (error, fileObj) {
+          if (error) {
+            console.log("error in upload");
+          } else {
+            Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.picture": fileObj._id }});
+            Router.go('updatepicture');
+          }
       });
-    }
+    });
   }
 });

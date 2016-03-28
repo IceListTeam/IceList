@@ -1,4 +1,4 @@
-<template name="update-picture">
+<template name="updatepicture">
   <div class="page auth">
     <nav>
       <div class="nav-group">
@@ -16,7 +16,7 @@
 			</div>
 		{{/with}}
 
-        <form class="ui form">
+        <form class="ui form" id="picupload">
           {{#if errorMessages}}
             <div class="list-errors">
               {{#each errorMessages}}
@@ -29,21 +29,14 @@
             <a class="item" href="/update">Account Info</a>
             <a class="active item">Profile Picture</a>
           </div>
-
-          <div class="item">
-            {{#if userimage}}
-              <div>
-                <a href="{{this.profile.image}}" target="_blank"><img src="{{this.url store='images'}}" alt="" class="thumbnail" /></a>
-              </div>
-            {{/if}}
-          </div>
           
           <div class="item">
-            <div class="ui fluid left icon input">
-              <input type="file" class="myFileInput" placeholder="Your Profile Picture" required/>
-              <i class="mail icon"></i>
-            </div>
+            {{#each userImage}}
+            <div id="dropzone" class="dropzone"><div class="well well-drop-zone"><center><img class="ui small circular image" src="{{this.url store="images"}}"/></center></div></div>
+            {{/each}}
+            <p>Drop an image above to upload a new avatar.</p>
           </div>
+          
         </form>
       </div>
 
