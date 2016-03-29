@@ -7,10 +7,6 @@ Template.join.onCreated(function() {
   Session.set(ERRORS_KEY, {});
 });
 
-Template.join.onRendered(function() {
-  this.$('.datetimepicker').datetimepicker();
-});
-
 Template.join.helpers({
   errorMessages: function() {
     return _.values(Session.get(ERRORS_KEY));
