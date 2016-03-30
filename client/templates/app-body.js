@@ -111,10 +111,13 @@ Template.appBody.events({
     Session.set(MENU_KEY, false);
   },
 
+<<<<<<< HEAD
   'click .js-home': function() {
      Router.go('main');
   },
 
+=======
+>>>>>>> master
   'click .js-update': function() {
      Router.go('update');
   },
@@ -124,10 +127,13 @@ Template.appBody.events({
   'click .js-newPost': function() {
      Router.go('newPost');
   },
+<<<<<<< HEAD
 
   'click .js-posts': function() {
      Router.go('posts');
   },
+=======
+>>>>>>> master
   
   'click .js-upload': function() {
     Router.go('upload');

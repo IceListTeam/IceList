@@ -47,8 +47,13 @@ Template.resetpassword.events({
     Accounts.resetPassword( passToken , inPass , function(error) {
       // Callback from resetPassword
       if (error) {
+<<<<<<< HEAD
         return Session.set(ERRORS_KEY, {'none': error.reason});
         console.log("having");
+=======
+        console.log("having");
+        return Session.set(ERRORS_KEY, {'none': error.reason});
+>>>>>>> master
       }
       
       

@@ -13,6 +13,13 @@ Meteor.startup(function () {
   Accounts.config({
     sendVerificationEmail: true
   });
+<<<<<<< HEAD
+=======
+
+  Accounts.urls.verifyEmail = function(token){
+    return Meteor.settings.private.awsUrl + "/" + "verify-email/" + token;
+  }
+>>>>>>> master
   
   // Setup information for email-verification email
   Accounts.emailTemplates.verifyEmail.subject = function(user) {
