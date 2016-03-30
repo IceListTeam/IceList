@@ -1,0 +1,11 @@
+{
+	"public" : {
+		"recordsPerPage" : "5"
+	},
+	"private" : {
+	  "AWSAccessKeyId" : "AKIAIBWMVWNSXJ5N7AUA",
+		"AWSSecretAccessKey" : "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",
+		"AWSBucket" : "icelistphotobucket",
+		"MAIL_URL": "smtp://ilmail:Spring2016@smtp.sendgrid.net:587"
+	}
+  }

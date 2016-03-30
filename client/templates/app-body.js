@@ -111,6 +111,10 @@ Template.appBody.events({
     Session.set(MENU_KEY, false);
   },
 
+  'click .js-home': function() {
+     Router.go('main');
+  },
+
   'click .js-update': function() {
      Router.go('update');
   },
@@ -119,6 +123,10 @@ Template.appBody.events({
   },
   'click .js-newPost': function() {
      Router.go('newPost');
+  },
+
+  'click .js-posts': function() {
+     Router.go('posts');
   },
   
   'click .js-upload': function() {
