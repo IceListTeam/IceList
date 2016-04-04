@@ -17,7 +17,7 @@ Meteor.methods({
       stat: status,
       createdAt: new Date(),
       owner: Meteor.userId(),
-      username: Meteor.user().username
+      username: Meteor.user().emails[0].address
     });
 	
 	console.log(desc , category , numPeople , time , privacy , location , status);
