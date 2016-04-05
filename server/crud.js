@@ -42,6 +42,8 @@ Meteor.methods({
     username: Meteor.user().emails[0].address
     });
 
+  console.log(desc , category , price, quantity , privacy , location , status);
+  return Listings.find({desc: desc})[0];
   },
 
   deleteItem: function (taskId) {

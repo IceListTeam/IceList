@@ -14,6 +14,6 @@ Template.newlisting.events({
 
 		console.log(desc , category , price , quantity , privacy , location , status );
 
-		Meteor.call('addListing', desc , category , price , quantity , privacy , location , status );
+		Meteor.call('addListing', desc , category , price , quantity , privacy , locat , status );
 	}
 });

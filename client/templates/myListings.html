@@ -1,5 +1,6 @@
+<!--myListings.html-->
 <!--new-listing.html-->
-<template name="newlisting">
+<template name="mylistings">
   <div class="page auth">
     <nav>
       <div class="nav-group">
@@ -9,8 +10,8 @@
 
     <div class="content-scrollable">
       <div class="wrapper-auth">
-        <h1 class="title-auth">New Listing</h1>
-        <p class="subtitle-auth" >Create a new listing.</p>
+        <h1 class="title-auth">My Listings</h1>
+        <p class="subtitle-auth" >Update or delete your listsing information.</p>
 
 
         <form>
@@ -21,43 +22,44 @@
               {{/each}}
             </div>
           {{/if}}
+
+          	  <div class="ui two item menu">
+	            <a class="item" href="/myPosts">My Events</a>
+	            <a class="active item">My Listings</a>
+	          </div>
           
-          <div class="ui two item menu">
-            <a class="item" href="/newPost">New Event</a>
-            <a class="active item">New Listing</a>
-          </div>
+          {{#each showMyListings}}
 
           <div class="ui fluid left icon input">
-            <input type="text" name="desc" placeholder="Description" required />
+            <input type="text" name="desc" placeholder="Description" value="{{desc}}" />
             <span title="Description"></span>
           </div>
        
           <input type="hidden" name="category" value="Listing" />
           
           <div class="ui fluid left icon input">
-            <input type="text" name="loc" placeholder="Location" required />
+            <input type="text" name="loc" placeholder="Location" value="{{location}}" />
             <span title="Location"></span>
           </div>
 
           <div class="ui fluid left icon input">
-            <input type="number" name="quantity" placeholder="Quantity" required />
+            <input type="number" name="quantity" placeholder="Quantity" value="{{quantity}}" />
           </div>
 
           <div class="ui fluid left icon input">
-            <input type="text" name="price" placeholder="Price" required />
+            <input type="text" name="price" placeholder="Price" value="{{price}}" />
             <i class="dollar icon"></i>
           </div>
 
           <div class="ui fluid left icon input">
-            <input type="text" name="stat" placeholder="Status" required />
+            <input type="text" name="stat" placeholder="Status" value="{{status}}" />
           </div>
 
-          <div class="ui fluid left icon input">
-            <input type="text" name="privacy" placeholder="Privacy" required />
-          </div>
 
-          <button type="submit" class="btn-primary">Create</button>
+          <button type="submit" class="btn-primary, positve ui button">Update</button>
+          <button type="submit" class="btn-primary, negative ui button">Delete</button>
 
+          {{/each}}
 
 </form>
 </div>
