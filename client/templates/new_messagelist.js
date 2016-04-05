@@ -1,6 +1,3 @@
-T = [ { _id: "1" , name: "Bobert Joseph" , date: "2 days ago" , recentMessage: "Woah dude, that's messed up." , avatar: "http://previews.123rf.com/images/vgstudio/vgstudio1006/vgstudio100600037/7269033-Portrait-of-happy-smiling-man-isolated-on-white-Stock-Photo-man-men-face.jpg" },
-      { _id: "2" , name: "Rachel Lagann" , date: "20 minutes ago" , recentMessage: "I have no idea what you mean." , avatar: "http://previews.123rf.com/images/kurhan/kurhan1111/kurhan111100105/11182717-Business-woman--Stock-Photo-lawyer.jpg" },
-    ];
 
 Template.newMessageList.helpers({
   hasConversations: function() {
@@ -22,7 +19,8 @@ Template.newMessageList.helpers({
       }
     });
     if(uObj) {
-      return uObj.name;
+		// returns just the userID of newest sender need handler to get user name from ID
+      return uObj.recentSenderName;
     } else {
       return null;
     }
@@ -39,7 +37,9 @@ Template.newMessageList.helpers({
       }
     });
     if(uObj) {
-      return uObj.avatar;
+		// we will need a new handler to get user avater from recentSender user ID
+      //return uObj.avatar;
+	  return "http://previews.123rf.com/images/kurhan/kurhan1111/kurhan111100105/11182717-Business-woman--Stock-Photo-lawyer.jpg";
     } else {
       return null;
     }
