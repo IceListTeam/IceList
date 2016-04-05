@@ -1,4 +1,3 @@
-Listings = new Mongo.Collection('Listings');
 Meteor.methods({
 
   addEvent: function (desc , category , numPeople , time , privacy , location , status ) {
@@ -40,7 +39,7 @@ Meteor.methods({
 	  status: status,
       createdAt: new Date(),
       owner: Meteor.userId(),
-      username: Meteor.user().username
+      username: Meteor.user().emails[0].address
     });
 
   },

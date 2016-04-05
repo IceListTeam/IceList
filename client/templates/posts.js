@@ -6,6 +6,7 @@ var firstRender = true;
 var listRenderHold = LaunchScreen.hold();
 listFadeInHold = null;
 
+/*
 Template.listsShow.onRendered(function() {
   if (firstRender) {
     // Released in app-body.js
@@ -16,7 +17,6 @@ Template.listsShow.onRendered(function() {
 
     firstRender = false;
   }
-
   this.find('.js-title-nav')._uihooks = {
     insertElement: function(node, next) {
       $(node)
@@ -32,6 +32,8 @@ Template.listsShow.onRendered(function() {
   };
 });
 
+
+
 Template.listsShow.helpers({
   editing: function() {
     return Session.get(EDITING_KEY);
@@ -45,6 +47,8 @@ Template.listsShow.helpers({
     return Todos.find({listId: listId}, {sort: {createdAt : -1}});
   }
 });
+
+*/
 
 var editList = function(list, template) {
   Session.set(EDITING_KEY, true);
@@ -97,6 +101,7 @@ var toggleListPrivacy = function(list) {
   }
 };
 
+/*
 Template.listsShow.events({
   'click .js-cancel': function() {
     Session.set(EDITING_KEY, false);
@@ -141,9 +146,9 @@ Template.listsShow.events({
   },
 
   //change list name
-  /*'click .js-edit-list': function(event, template) {
+  'click .js-edit-list': function(event, template) {
     editList(this, template);
-  },*/
+  },
 
   'click .js-toggle-list-privacy': function(event, template) {
     toggleListPrivacy(this, template);
@@ -176,3 +181,5 @@ Template.listsShow.events({
     $input.val('');
   }
 });
+
+*/
