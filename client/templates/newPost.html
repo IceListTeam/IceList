@@ -10,40 +10,77 @@
  <div class="content-scrollable">
       <div class="wrapper-auth">
         <h1 class="title-auth">New Post</h1>
-        <p class="subtitle-auth" >Select the category of the new post.</p>
-        <form>		
-		
+        <p class="subtitle-auth" >Create a new post.</p>
+
+        <form>	
           {{#if errorMessages}}
             <div class="list-errors">
               {{#each errorMessages}}
                 <div class="list-item">{{this}}</div>
               {{/each}}
-            </div>
+           </div>
           {{/if}}
 
-          Insert links here to different categories
+          <!--Insert links here to different categories-->
 
-          </form>
-	
-	<form>	  
-	<div class="input-symbol">
-       <input type="textarea" name="desc" placeholder="Description"/>
-	   <select name="category">
-			<option value = "Event">Event</option>
-			<option value = "Listing">Listing</option>
-	   </select>
-	   <input type ="textarea" name="attend" placeholder="Attending"/>
-	   <input type = "textarea" name="time" placeholder="Time"/>
-	   <input type="textarea" name="privacy" placeholder="Privacy"/>
-	   <input type="textarea" name="loc" placeholder="location"/>
-	   <input type="textarea" name="stat" placeholder="status"/>
-	   <input type="submit" name = "button" value = "create"/>
-	</div>
-    </form>
+        <div class="ui two item menu">
+          <a class="active item">New Event</a>
+          <a class="item" href="/newlisting">New Listing</a>
+        </div>
 
+
+          <div class="input-symbol">
+            <input type="text" name="desc" placeholder="Description" required />
+            <span title="Description"></span>
+          </div>
+
+          <div class="input-symbol">
+            <input type="text" name="attend" placeholder="Attending" required />
+            <span title="Attending"></span>
+          </div>
+
+          <div class="input-symbol">
+            <input type="text" name="time" placeholder="Time" required />
+            <span title="Time"></span>
+          </div>
+
+          <div class="input-symbol">
+            <input type="text" name="privacy" placeholder="Privacy" required />
+            <span title="Privacy"></span>
+          </div>
+                    
+          <div class="input-symbol">
+            <input type="text" name="loc" placeholder="Location" required />
+            <span title="Location"></span>
+          </div>
+          
+          <div class="input-symbol">
+            <input type="text" name="stat" placeholder="Status" required />
+            <span title="Status"></span>
+          </div>
+          
+          <input type="hidden" name="category" value="Event" />
+
+          <button type="submit" class="btn-primary">Create</button>
+<!--
+  	<div class="input-symbol">
+         <input type="textarea" name="desc" placeholder="Description"/>
+  	   <select name="category">
+  			<option value = "Event">Event</option>
+  			<option value = "Listing">Listing</option>
+  	   </select>
+  	   <input type ="textarea" name="attend" placeholder="Attending"/>
+  	   <input type = "textarea" name="time" placeholder="Time"/>
+  	   <input type="textarea" name="privacy" placeholder="Privacy"/>
+  	   <input type="textarea" name="loc" placeholder="location"/>
+  	   <input type="textarea" name="stat" placeholder="status"/>
+
+       <button type="submit" class="btn-primary">Create</button>
+
+     -->
+</form>
+</div>
+          
+    </div>
   </div>
-</div>
-</div>
-
-
 </template>

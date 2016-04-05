@@ -22,6 +22,7 @@ Meteor.methods({
 	console.log(desc , category , numPeople , time , privacy , location , status);
 	return Listings.find({desc: desc})[0];
   },
+
   
   addListing: function (desc , category , price , quantity , privacy , location , status ) {
   
@@ -30,16 +31,15 @@ Meteor.methods({
     }
 
 	Listings.insert({
-      desc: desc,
+    desc: desc,
 	  category: category,
 	  price: price,
-	  time: time,
 	  quantity: quantity,
 	  location: location,
 	  status: status,
-      createdAt: new Date(),
-      owner: Meteor.userId(),
-      username: Meteor.user().emails[0].address
+    createdAt: new Date(),
+    owner: Meteor.userId(),
+    username: Meteor.user().emails[0].address
     });
 
   },
