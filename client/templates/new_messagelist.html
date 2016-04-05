@@ -1,0 +1,40 @@
+<template name="newMessageList">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">Messages</h1>
+        <p class="subtitle-auth">Select a conversation below to see details.</p>
+
+        {{#if hasConversations}}
+        <div class="ui feed">
+        {{#each allConversations}}
+          <div class="event">
+            <div class="label">
+              <img src="{{msgAvatar this._id}}">
+            </div>
+            <div class="content">
+              <div class="summary">
+                <a>{{msgName this._id}}</a>
+                <div class="date">
+                  {{msgDate this._id}}
+                </div>
+              </div>
+              <div class="extra text">
+                {{msgPreview this._id}}
+              </div>
+            </div>
+          </div>
+        {{/each}}
+        </div>
+        {{/if}}
+        
+      </div>
+    </div>
+  </div>
+</template>
