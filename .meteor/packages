@@ -9,7 +9,6 @@ blaze-html-templates
 session
 mongo
 mobile-experience
-standard-minifiers
 less
 iron:router
 accounts-password
@@ -23,3 +22,5 @@ cfs:s3
 raix:ui-dropped-event
 reactive-var
 cfs:filesystem
+standard-minifier-css
+standard-minifier-js

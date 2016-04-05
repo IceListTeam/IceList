@@ -15,7 +15,7 @@ Meteor.startup(function () {
   });
 
   Accounts.urls.verifyEmail = function(token){
-    return Meteor.settings.private.awsUrl + "/" + "verify-email/" + token;
+    return "verify-email/" + token;
   }
   
   // Setup information for email-verification email

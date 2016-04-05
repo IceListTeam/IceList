@@ -9,8 +9,7 @@
    <div class="content-scrollable">
       <div class="wrapper-auth">
         <h1 class="title-auth">Main Page</h1>	
-        <p class="subtitle-auth" >{{#each showListings}} hello {{/each}}</p>	
-	
+        <p class="subtitle-auth">View the latest campus listings and events</p>	
           {{#if errorMessages}}
             <div class="list-errors">
               {{#each errorMessages}}
@@ -19,6 +18,22 @@
             </div>
           {{/if}}
 
+          <!--Display Listings-->
+          <h3> Listings </h3>
+          {{#each showListings}}  
+            <p>Description: {{desc}}</p>
+            <p>Location: {{locat}}</p>
+            <p>Created: {{createdAt}} </p>
+            <p>Posted By: {{username}}</p> 
+          {{/each}}
+          <h3> Events </h3>
+          {{#each showEvents}}
+            <p>Description: {{desc}}</p>
+            <p>Time: {{time}} </p>
+            <p>Location: {{locat}}</p>
+            <p>Created: {{createdAt}} </p>
+            <p>Posted By: {{username}}</p> 
+          {{/each}}
         </div>
   </div>
 </div>
