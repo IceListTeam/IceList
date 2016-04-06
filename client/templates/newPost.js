@@ -8,7 +8,7 @@ Template.newPost.events({
 		var time = template.$('[name=time]').val();
 		var privacy = template.$('[name=privacy]').val();
 		var locat = template.$('[name=loc]').val();
-    
+    	console.log('hello');
 		//Add more parameters
 		//var result = Meteor.call('addEvent', desc, category, attend, time, privacy, locat, stat);
 		//console.log(typeof result);

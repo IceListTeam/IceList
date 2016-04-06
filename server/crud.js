@@ -5,12 +5,13 @@ Meteor.methods({
     /*if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }*/
+    console.log( "testing if it gets here");
 
 	  Listings.insert({
       desc: desc,
       category: category,
       attend: 0,
-      maxAttend: numPeople.parseInt(),
+      maxAttend: parseInt(numPeople),
       time: time,
       privacy: privacy,
       location: location,
@@ -33,8 +34,8 @@ Meteor.methods({
 	Listings.insert({
     desc: desc,
 	  category: category,
-	  price: price,
-	  quantity: quantity,
+	  price: parseInt(price),
+	  quantity: parseInt(quantity),
 	  location: location,
 	  status: "Unsold",
     createdAt: new Date(),
