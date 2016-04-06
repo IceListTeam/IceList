@@ -120,12 +120,6 @@ Template.appBody.events({
   'click .js-messages': function() {
      Router.go('messages');
   },
-  'click .js-newPost': function() {
-     Router.go('newPost');
-  },
-  'click .js-myPosts': function() {
-     Router.go('myPosts');
-  },
   
   'click .js-upload': function() {
     Router.go('upload');

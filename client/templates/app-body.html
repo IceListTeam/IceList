@@ -14,11 +14,8 @@
           </a>
           {{#if userMenuOpen}}
             <a class="js-home btn-secondary">Home</a>
-            <a class="js-messages btn-secondary">Messages</a>
             <a class="js-update btn-secondary">Settings</a>
             <a class="js-upload btn-secondary">Upload</a>
-            <a class="js-newPost btn-secondary">New Post</a>
-            <a class="js-myPosts btn-secondary">My Posts</a>
             <a class="js-logout btn-secondary">Logout</a>
           {{/if}}
         </div>
@@ -29,26 +26,20 @@
         </div>
       {{/if}}
     
-<!-- not needed 
       <div class="list-todos">
-        <a class="js-new-list link-list-new"><span class="icon-plus"></span>New List</a>
-
-        {{#each lists}}
-          <a href="{{pathFor 'listsShow'}}" class="list-todo {{activeListClass}}" title="{{name}}">
-            {{#if userId}}
-              <span class="icon-lock"></span>
-            {{/if}}
-            {{#if incompleteCount}}
-              <span class="count-list">{{incompleteCount}}</span>
-            {{/if}}
-            {{name}}
-          </a>
-        {{/each}}
-
-      </div>  
-    
-    -->
-    
+        <a href="main" class="list-todo active" title="{{name}}">
+          <i class="large home icon"></i>
+          Home
+        </a>
+      </div>
+      {{#if currentUser}}
+      <div class="list-todos">
+        <a href="messages" class="list-todo active" title="{{name}}">
+          <i class="mail icon"></i>
+          Messages
+        </a>
+      </div>      
+      {{/if}}
     
     </section>
 

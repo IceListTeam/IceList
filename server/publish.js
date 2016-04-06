@@ -42,3 +42,9 @@ Meteor.publish('Images', function() {
 Meteor.publish('Listings', function() {
   return Listings.find({});
 });
+
+Meteor.publish("userData", function () {
+    return Meteor.users.find({},
+        {fields: {"profile":1,"_id":1}});
+});
+
