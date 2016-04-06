@@ -16,9 +16,9 @@ Template.main.helpers({
     var L = new Date(date);
     var diff = Math.abs(Date.now() - L.getTime());
     var diffDays = Math.floor(diff / (1000 * 3600 * 24)); 
-    diff = diff - diffDays;
+    diff = diff - (diffDays * (1000 * 3600 * 24));
     var diffHours = Math.floor(diff / (1000 * 3600)); 
-    diff = diff - diffHours;
+    diff = diff - (diffHours * (1000 * 3600));
     var diffMinutes = Math.floor(diff / (1000 * 60)); 
     if(diffDays <= 0 && diffHours <= 0 && diffMinutes <= 0) {
       return "<1m"
