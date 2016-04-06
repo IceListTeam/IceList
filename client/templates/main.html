@@ -8,18 +8,56 @@
 	
    <div class="content-scrollable">
       <div class="wrapper-auth">
-        <h1 class="title-auth">Main Page</h1>
-        <p class="subtitle-auth" >Sorry, the main page is currently under construction</p>	
-		
-          {{#if errorMessages}}
-            <div class="list-errors">
-              {{#each errorMessages}}
-                <div class="list-item">{{this}}</div>
-              {{/each}}
+        <center><div class="ui compact segment"><img src="img/icelist_banner.png" width="300"/></div></center>
+        <div class="ui top attached small tabular menu">
+          <a class="{{whichActive currentCategory "all"}} item" href="main">
+            All
+          </a>
+          <a class="{{whichActive currentCategory "event"}} teal item" href="main?i=event">
+            <i class="calendar outline icon"></i>
+            Events
+          </a>
+          <a class="{{whichActive currentCategory "sale"}} blue item" href="main?i=sale">
+            <i class="dollar icon"></i>
+            Sales
+          </a>
+          <div class="right menu">
+            <div class="ui simple dropdown item">
+              Sort by
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <a class="active item">Recent</a>
+                <a class="item">Location</a>
+                <a class="item">Price</a>
+              </div>
             </div>
-          {{/if}}
-
+            <div class="item" href="">
+              <a href="newPost"><i class="circular inverted large blue add icon"></i></a>
+            </div>
+          </div>
         </div>
+        <!--Display Listings-->
+        <div class="ui bottom attached segment">
+          {{#if showListings}}
+            <div class="ui selection list">
+            {{#each showListings}}
+              <a class="item">
+                <div class="right floated content" style="font-size: 60%;">
+                  posted {{dateHelper createdAt}} ago
+                </div>
+                <i class="circular inverted {{catHelper category}} icon"></i>
+                <div class="content" style="font-size: 80%;">
+                  <div class="header"><b style="color: #000;">{{desc}}</b> by {{nameHelper owner}}</div>
+                  <div class="description" style="text-align: left">{{location}}</div>
+                </div>
+              </a>
+            {{/each}}
+            </div>
+          {{else}}
+            There doesn't seem to be anything here. Make a new Event or Sales post and it will appear here.
+          {{/if}}
+        </div>
+      </div>
   </div>
 </div>
 

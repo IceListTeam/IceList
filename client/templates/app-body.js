@@ -114,11 +114,11 @@ Template.appBody.events({
   'click .js-update': function() {
      Router.go('update');
   },
+  'click .js-home': function() {
+     Router.go('main');
+  },
   'click .js-messages': function() {
      Router.go('messages');
-  },
-  'click .js-newPost': function() {
-     Router.go('newPost');
   },
   
   'click .js-upload': function() {

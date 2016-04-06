@@ -6,7 +6,7 @@ Meteor.publish('privateLists', function() {
   if (this.userId) {
     return Lists.find({userId: this.userId});
   } else {
-    this.ready();
+    //this.ready();
   }
 });
 
@@ -15,6 +15,7 @@ Meteor.publish('todos', function(listId) {
 
   return Todos.find({listId: listId});
 });
+
 
 
 Meteor.publish('messages', function(listId) {
@@ -38,4 +39,12 @@ Meteor.publish('Images', function() {
   return Images.find({});
 });
 
+Meteor.publish('Listings', function() {
+  return Listings.find({});
+});
+
+Meteor.publish("userData", function () {
+    return Meteor.users.find({},
+        {fields: {"profile":1,"_id":1}});
+});
 

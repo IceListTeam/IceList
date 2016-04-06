@@ -1,0 +1,67 @@
+<!--new-listing.html-->
+<template name="newlisting">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">New Listing</h1>
+        <p class="subtitle-auth" >Create a new listing.</p>
+
+
+        <form>
+          {{#if errorMessages}}
+            <div class="list-errors">
+              {{#each errorMessages}}
+                <div class="list-item">{{this}}</div>
+              {{/each}}
+            </div>
+          {{/if}}
+          
+          <div class="ui two item menu">
+            <a class="item" href="/newPost">New Event</a>
+            <a class="active item">New Listing</a>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="desc" placeholder="Description" required />
+            <span title="Description"></span>
+          </div>
+       
+          <input type="hidden" name="category" value="Listing" />
+          
+          <div class="ui fluid left icon input">
+            <input type="text" name="loc" placeholder="Location" required />
+            <span title="Location"></span>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="number" name="quantity" placeholder="Quantity" required />
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="price" placeholder="Price" required />
+            <i class="dollar icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="stat" placeholder="Status" required />
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="privacy" placeholder="Privacy" required />
+          </div>
+
+          <button type="submit" class="btn-primary">Create</button>
+
+
+</form>
+</div>
+          
+    </div>
+  </div>
+</template>

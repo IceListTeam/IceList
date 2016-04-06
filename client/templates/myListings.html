@@ -1,0 +1,69 @@
+<!--myListings.html-->
+<!--new-listing.html-->
+<template name="mylistings">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <h1 class="title-auth">My Listings</h1>
+        <p class="subtitle-auth" >Update or delete your listsing information.</p>
+
+
+        <form>
+          {{#if errorMessages}}
+            <div class="list-errors">
+              {{#each errorMessages}}
+                <div class="list-item">{{this}}</div>
+              {{/each}}
+            </div>
+          {{/if}}
+
+          	  <div class="ui two item menu">
+	            <a class="item" href="/myPosts">My Events</a>
+	            <a class="active item">My Listings</a>
+	          </div>
+          
+          {{#each showMyListings}}
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="desc" placeholder="Description" value="{{desc}}" />
+            <span title="Description"></span>
+          </div>
+       
+          <input type="hidden" name="category" value="Listing" />
+          
+          <div class="ui fluid left icon input">
+            <input type="text" name="loc" placeholder="Location" value="{{location}}" />
+            <span title="Location"></span>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="number" name="quantity" placeholder="Quantity" value="{{quantity}}" />
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="price" placeholder="Price" value="{{price}}" />
+            <i class="dollar icon"></i>
+          </div>
+
+          <div class="ui fluid left icon input">
+            <input type="text" name="stat" placeholder="Status" value="{{status}}" />
+          </div>
+
+
+          <button type="submit" class="btn-primary, positve ui button">Update</button>
+          <button type="submit" class="btn-primary, negative ui button">Delete</button>
+
+          {{/each}}
+
+</form>
+</div>
+          
+    </div>
+  </div>
+</template>

@@ -1,4 +1,5 @@
-<template name="newPost">
+<!--myPosts.html-->
+<template name="myPosts">
 
 <div class="page auth">
     <nav>
@@ -9,8 +10,8 @@
 	
  <div class="content-scrollable">
       <div class="wrapper-auth">
-        <h1 class="title-auth">New Post</h1>
-        <p class="subtitle-auth" >Create a new post.</p>
+        <h1 class="title-auth">My Posts</h1>
+        <p class="subtitle-auth" >Here are your posts.</p>
 
         <form>	
           {{#if errorMessages}}
@@ -24,44 +25,47 @@
           <!--Insert links here to different categories-->
 
         <div class="ui two item menu">
-          <a class="active item">New Event</a>
-          <a class="item" href="/newlisting">New Listing</a>
+          <a class="active item">My Events</a>
+          <a class="item" href="/mylistings">My Listings</a>
         </div>
 
-
+        {{#each showMyEvents}}
           <div class="input-symbol">
-            <input type="text" name="desc" placeholder="Description" required />
+            <input type="text" name="desc" placeholder="Description" value="{{desc}}" />
             <span title="Description"></span>
           </div>
 
           <div class="input-symbol">
-            <input type="text" name="attend" placeholder="Attending" required />
+            <input type="text" name="attend" placeholder="Attending" value="{{attend}}" />
             <span title="Attending"></span>
           </div>
 
           <div class="input-symbol">
-            <input type="text" name="time" placeholder="Time" required />
+            <input type="text" name="time" placeholder="Time" value="{{time}}" />
             <span title="Time"></span>
           </div>
 
           <div class="input-symbol">
-            <input type="text" name="privacy" placeholder="Privacy" required />
+            <input type="text" name="privacy" placeholder="Privacy" value="{{privacy}}" />
             <span title="Privacy"></span>
           </div>
                     
           <div class="input-symbol">
-            <input type="text" name="loc" placeholder="Location" required />
+            <input type="text" name="loc" placeholder="Location" value="{{loc}}" />
             <span title="Location"></span>
           </div>
           
           <div class="input-symbol">
-            <input type="text" name="stat" placeholder="Status" required />
+            <input type="text" name="stat" placeholder="Status" value="{{stat}}" />
             <span title="Status"></span>
           </div>
-          
-          <input type="hidden" name="category" value="Event" />
 
-          <button type="submit" class="btn-primary">Create</button>
+          <button type="button" class="btn-primary, positve ui button, update">Update</button>
+          <button type="button" class="btn-primary, negative ui button, delete">Delete</button>
+
+          <hr />
+
+      {{/each}}
 
 </form>
 </div>
