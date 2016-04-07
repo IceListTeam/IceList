@@ -1,5 +1,4 @@
 //viewpost.js
-
 Template.viewpost.helpers({
   nameHelper: function(uid) {
     var n = Meteor.users.findOne( {_id:uid} );  
@@ -13,6 +12,10 @@ Template.viewpost.helpers({
   },
   iconHelper: function(cate) {
     return cate=="Event" ? "calendar outline" : "dollar";
+  },
+  
+  ownPost: function(owner) {
+    return Meteor.userId() == owner; 
   },
   
   userImage: function () {
@@ -62,5 +65,15 @@ Template.viewpost.helpers({
     } else {
       return "$" + pri;
     }
+  }
+});
+
+Template.viewpost.events({
+  'click #editbutton': function(event, template) {
+    console.log("Clicked edit");
+  },
+  'click #deletebutton': function(event, template) {
+    console.log("Clicked delete");
+    $('#deleteprompt').modal('show');
   }
 });

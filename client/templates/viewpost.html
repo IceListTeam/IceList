@@ -12,7 +12,13 @@
           <div class="ui raised segment" style="margin-left: 20px; margin-right: 20px;">
             {{#if thisPost}}
               {{#with thisPost}}
-                <div class="ui {{colorHelper category}} ribbon label" style="width: 100%; vertical-align: middle; line-height: 30px;">
+                {{#if ownPost owner}}
+                  <div class="ui labels" style="float: right; display: inline;">
+                  <a id="editbutton" class="ui {{colorHelper category}} right ribbon label" style="font-size: 80%;"><i class="inverted edit icon"></i></a><br/><br/>
+                  <a id="deletebutton" class="ui {{colorHelper category}} right ribbon label" style="font-size: 80%;"><i class="inverted trash icon" style="font-size: 110%;"></i></a>
+                  </div>
+                {{/if}}
+                <div class="ui {{colorHelper category}} ribbon label" style="width: 80%; vertical-align: middle; line-height: 30px;">
                   <i class="inverted big {{iconHelper category}} icon" style="vertical-align: top;"></i>
                   <b style="font-size: 120%;">{{name}}</b>
                 </div>
@@ -24,6 +30,7 @@
                   </div></span><br/>
                   <div class="ui horizontal divider header" style="font-size: 100%;">Details</div>
                   <div><i class="circular inverted {{colorHelper category}} wait icon"></i> {{dateHelper createdAt}}</div>
+                  
                   {{#if catIs category "Listing"}}
                   <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} dollar icon"></i>${{price}}</div>
                   <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} cube icon"></i>{{quantity}} remaining</div>
@@ -46,4 +53,30 @@
         </div>
     </div>
   </div>
+  
+  <div id="wrapper" style="position: static; height: 100%; width: 100%;">
+  <div class="ui modal" id="deleteprompt">
+    <i class="close icon"></i>
+    <div class="header">
+      Modal Title
+    </div>
+    <div class="image content">
+      <div class="image">
+        An image can appear on left or an icon
+      </div>
+      <div class="description">
+        A description can appear on the right
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">Cancel</div>
+      <div class="ui button">OK</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    $('.ui.modal')
+    .modal({context:'#wrapper'})
+    ;
+  </script>
 </template>

@@ -14,8 +14,8 @@ Template.join.helpers({
   errorClass: function(key) {
     return Session.get(ERRORS_KEY)[key] && 'error';
   },
-
-  birthdayHelper: function() {
+  
+  dayHelper: function() {
     dayList = [];
     for( i = 1 ; i <31 ; i++ )
     {
@@ -24,59 +24,12 @@ Template.join.helpers({
     return dayList;
   },
   
-  birthmonthHelper: function() {
+  monthHelper: function() {
     monthList = [{no: 1 , name: "January"} , {no: 2 , name: "February"} , {no: 3 , name: "March"} , {no: 4 , name: "April"} , {no: 5 , name: "May"} , {no: 6 , name: "June"} , {no: 7 , name: "July"} , {no: 8 , name: "August"} , {no: 9 , name: "September"} , {no: 10 , name: "October"} , {no: 11 , name: "November"} , {no: 12 , name: "December"}];
-    var bm = Meteor.user().profile["birthday"];
-	var a = bm.split("/");
-	monthList.forEach(function(i) { 
-		if(i.name == a[0])
-		{
-			i.current = "selected";
-		}
-	});
 	return monthList;
   },
   
-  birthyearHelper: function(maxdate) {
-    yearList = [];
-    for( i = maxdate ; i >= 1990 ; i-- )
-    {
-      yearList.push(i);
-    }
-    var bm = Meteor.user().profile["gradDate"];
-	var a = bm.split("/");
-	yearList.forEach(function(i) { 
-		if(i == a[2])
-		{
-			i.current = "selected";
-		}
-	});
-    return yearList;
-  },
-  
-  graddayHelper: function() {
-    dayList = [];
-    for( i = 1 ; i <31 ; i++ )
-    {
-      dayList.push(i);
-    }
-    return dayList;
-  },
-  
-  birthmonthHelper: function() {
-    monthList = [{no: 1 , name: "January"} , {no: 2 , name: "February"} , {no: 3 , name: "March"} , {no: 4 , name: "April"} , {no: 5 , name: "May"} , {no: 6 , name: "June"} , {no: 7 , name: "July"} , {no: 8 , name: "August"} , {no: 9 , name: "September"} , {no: 10 , name: "October"} , {no: 11 , name: "November"} , {no: 12 , name: "December"}];
-    var bm = Meteor.user().profile["gradDate"];
-	var a = bm.split("/");
-	monthList.forEach(function(i) { 
-		if(i.name == a[0])
-		{
-			i.current = "selected";
-		}
-	});
-	return monthList;
-  },
-  
-  gradyearHelper: function(maxdate) {
+  yearHelper: function(maxdate) {
     yearList = [];
     for( i = maxdate ; i >= 1990 ; i-- )
     {
