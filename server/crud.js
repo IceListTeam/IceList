@@ -22,7 +22,7 @@ Meteor.methods({
       username: Meteor.user().emails[0].address
     });
 	
-	return Listings.find({desc: desc})[0];
+	return Listings.find({name: postName})[0];
   },
 
   
@@ -45,7 +45,7 @@ Meteor.methods({
     username: Meteor.user().emails[0].address
     });
 
-  return Listings.find({desc: desc})[0];
+  return Listings.find({name: postName})[0];
   },
 
   deleteItem: function (taskId) {
