@@ -13,7 +13,6 @@
             {{emailLocalPart}}
           </a>
           {{#if userMenuOpen}}
-            <a class="js-home btn-secondary">Home</a>
             <a class="js-update btn-secondary">Settings</a>
             <a class="js-upload btn-secondary">Upload</a>
             <a class="js-logout btn-secondary">Logout</a>
@@ -27,14 +26,14 @@
       {{/if}}
     
       <div class="list-todos">
-        <a href="main" class="list-todo active" title="{{name}}">
+        <a href="/main" class="list-todo active" title="{{name}}">
           <i class="large home icon"></i>
           Home
         </a>
       </div>
       {{#if currentUser}}
       <div class="list-todos">
-        <a href="messages" class="list-todo active" title="{{name}}">
+        <a href="/messages" class="list-todo active" title="{{name}}">
           <i class="mail icon"></i>
           Messages
         </a>

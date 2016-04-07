@@ -13,7 +13,7 @@
         <p class="subtitle-auth" >Create a new listing.</p>
 
 
-        <form>
+        <form class="ui form">
           {{#if errorMessages}}
             <div class="list-errors">
               {{#each errorMessages}}
@@ -28,7 +28,12 @@
           </div>
 
           <div class="ui fluid left icon input">
-            <input type="text" name="desc" placeholder="Description" required />
+            <input type="text" name="name" placeholder="Name" required />
+            <span title="Name"></span>
+          </div>
+          
+          <div class="ui fluid left icon input">
+            <textarea name="desc" placeholder="Description" rows="4" style="resize: none;" required></textarea>
             <span title="Description"></span>
           </div>
        

@@ -1,6 +1,6 @@
 Meteor.methods({
 
-  addEvent: function (desc , category , numPeople , time , privacy , location) {
+  addEvent: function (postName , longDesc , category , numPeople , time , privacy , location) {
   
     /*if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -8,7 +8,8 @@ Meteor.methods({
     console.log( "testing if it gets here");
 
 	  Listings.insert({
-      desc: desc,
+      name: postName,
+      desc: longDesc,
       category: category,
       attend: 0,
       maxAttend: parseInt(numPeople),
@@ -25,14 +26,15 @@ Meteor.methods({
   },
 
   
-  addListing: function (desc , category , price , quantity , privacy , location) {
+  addListing: function (postName , longDesc , category , price , quantity , privacy , location) {
   
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
 
 	Listings.insert({
-    desc: desc,
+    name: postName,
+    desc: longDesc,
 	  category: category,
 	  price: parseInt(price),
 	  quantity: parseInt(quantity),

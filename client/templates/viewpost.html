@@ -1,0 +1,49 @@
+<template name="viewpost">
+  <div class="page auth">
+      <nav>
+        <div class="nav-group">
+          <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+        </div>
+      </nav>
+    
+     <div class="content-scrollable">
+        <div class="wrapper-auth" style="text-align: left;">
+          <!--Display Listings-->
+          <div class="ui raised segment" style="margin-left: 20px; margin-right: 20px;">
+            {{#if thisPost}}
+              {{#with thisPost}}
+                <div class="ui {{colorHelper category}} ribbon label" style="width: 100%; vertical-align: middle; line-height: 30px;">
+                  <i class="inverted big {{iconHelper category}} icon" style="vertical-align: top;"></i>
+                  <b style="font-size: 120%;">{{name}}</b>
+                </div>
+                
+                <div style="margin-top: 5px; font-size: 90%;"><span style="margin-left: 10px;">by 
+                  <div class="ui basic small image label" style="margin-left: 5px;">
+                    <img src="{{userImage}}">
+                    {{nameHelper owner}}
+                  </div></span><br/>
+                  <div class="ui horizontal divider header" style="font-size: 100%;">Details</div>
+                  <div><i class="circular inverted {{colorHelper category}} wait icon"></i> {{dateHelper createdAt}}</div>
+                  {{#if catIs category "Listing"}}
+                  <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} dollar icon"></i>${{price}}</div>
+                  <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} cube icon"></i>{{quantity}} remaining</div>
+                  {{else}}
+                  <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} home icon"></i>{{location}}</div>
+                  <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} users icon"></i>{{attend}}/{{maxAttend}}</div>
+                  {{/if}}
+                  <div class="ui segment">
+                    <div class="ui top left attached {{colorHelper category}} label"><i class="comment icon"></i></div>
+                    <div>{{desc}}</div>
+                  </div>
+                </div>
+                <br/><br/><a class="ui bottom left attached {{colorHelper category}} label" href="/main"><i class="inverted reply icon"></i>Back to List</a>
+              {{/with}}
+            {{else}}
+              There doesn't seem to be anything here.
+              <br/><br/><a class="ui bottom left attached label" href="/main"><i class="inverted reply icon"></i>Back to List</a>
+            {{/if}}
+          </div>
+        </div>
+    </div>
+  </div>
+</template>

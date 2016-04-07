@@ -10,6 +10,9 @@ Template.thankyou.helpers({
       case "reset-password":
         return Spacebars.SafeString("Password change successful.");
         break;
+      case "account-change":
+        return Spacebars.SafeString("Profile update successful.");
+        break;
       default:
         return Spacebars.SafeString("Error page.");
         break;    
@@ -24,6 +27,10 @@ Template.thankyou.helpers({
         
       case "reset-password":
         return Spacebars.SafeString("Your password has been reset, and you may now log in with the new password. Thank you for using the password reset system.");
+        break;
+
+      case "account-change":
+        return Spacebars.SafeString("Your profile update has been successful. Your profile will now reflect the new changes.");
         break;
         
       default:

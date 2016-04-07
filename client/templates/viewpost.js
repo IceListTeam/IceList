@@ -1,6 +1,6 @@
-//main.js
+//viewpost.js
 
-Template.main.helpers({
+Template.viewpost.helpers({
   nameHelper: function(uid) {
     var n = Meteor.users.findOne( {_id:uid} );  
     if(n) {
@@ -8,11 +8,36 @@ Template.main.helpers({
     }
     return "undefined";
   },
-  catHelper: function(cate) {
-    return cate=="Event" ? "teal calendar outline" : "blue dollar";
+  colorHelper: function(cate) {
+    return cate=="Event" ? "teal" : "blue";
+  },
+  iconHelper: function(cate) {
+    return cate=="Event" ? "calendar outline" : "dollar";
   },
   
-  dateHelper: function(date) {
+  userImage: function () {
+    /*if( Meteor.user().profile["picture"] != null)
+    {
+      var img = Images.findOne( {"_id": Meteor.user().profile["picture"] } );
+      if( img )
+      {
+        return img;
+      }
+      else
+      {
+        Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.picture": null }});
+        return Images.findOne( { _id : "YBtQ8Wb4YDHRJjHTd" } );
+      }
+    }*/
+    return "/img/default_pic.jpg";
+  },
+  dateHelper: function(postdate) {
+    return moment(postdate).format("ddd, MMMM Do YYYY, h:mm a");
+  },
+  catIs: function(cat,typ) {
+    return cat == typ;
+  },
+  dateDiffHelper: function(date) {
     var L = new Date(date);
     var diff = Math.abs(Date.now() - L.getTime());
     var diffDays = Math.floor(diff / (1000 * 3600 * 24)); 
