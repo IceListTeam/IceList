@@ -10,8 +10,8 @@ Template.newlisting.events({
 		var locat = template.$('[name=loc]').val();
 		var price = template.$('[name=price]').val();
 	  var quantity = template.$('[name=quantity]').val();
-	  var privacy = template.$('[name=privacy]').val();
 
-		Meteor.call('addListing', name , desc , category , price , quantity , privacy , locat);
+		Meteor.call('addListing', name , desc , category , price , quantity , locat);
+    Router.go("main");
 	}
 });

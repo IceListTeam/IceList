@@ -14,5 +14,6 @@ Template.newPost.events({
 		//var result = Meteor.call('addEvent', desc, category, attend, time, privacy, locat, stat);
 		//console.log(typeof result);
 		Meteor.call('addEvent', name , desc , category, attend, time, privacy, locat);
+    Router.go("main");
 	}
 });

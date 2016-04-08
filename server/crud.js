@@ -2,10 +2,9 @@ Meteor.methods({
 
   addEvent: function (postName , longDesc , category , numPeople , time , privacy , location) {
   
-    /*if (! Meteor.userId()) {
+    if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
-    }*/
-    console.log( "testing if it gets here");
+    }
 
 	  Listings.insert({
       name: postName,
@@ -21,43 +20,76 @@ Meteor.methods({
       owner: Meteor.userId(),
       username: Meteor.user().emails[0].address
     });
-	
-	return Listings.find({name: postName})[0];
+    
+    return Listings.findOne({name: postName});
   },
 
   
-  addListing: function (postName , longDesc , category , price , quantity , privacy , location) {
+  addListing: function (postName , longDesc , category , price , quantity , location) {
   
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
 
-	Listings.insert({
-    name: postName,
-    desc: longDesc,
-	  category: category,
-	  price: parseInt(price),
-	  quantity: parseInt(quantity),
-	  location: location,
-	  status: "Unsold",
-    createdAt: new Date(),
-    owner: Meteor.userId(),
-    username: Meteor.user().emails[0].address
-    });
+    Listings.insert({
+      name: postName,
+      desc: longDesc,
+      category: category,
+      price: parseInt(price),
+      quantity: parseInt(quantity),
+      location: location,
+      status: "Unsold",
+      createdAt: new Date(),
+      owner: Meteor.userId(),
+      username: Meteor.user().emails[0].address
+      });
 
-  return Listings.find({name: postName})[0];
+    return Listings.findOne({name: postName});
   },
 
-  deleteItem: function (taskId) {
+  deletePost: function (postid) {
+  
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    
+    
+    
+    var i = Listings.findOne({_id : postid});
+    
+    if(!i) { throw new Meteor.Error("incorrect-id"); }
+    
+    if(i.owner != Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    
+    Listings.remove( {_id: postid} );
 
-    Listings.remove(taskId);
-
+    return true;
   },
 
-  editEvent: function (taskId) {
-
-    Tasks.update(taskId, { $set: { checked: setChecked} });
-
+  updatePost: function (postid , cat , params) {
+  
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    
+    
+    
+    var i = Listings.findOne({_id : postid});
+    
+    if(i.owner != Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+    
+    if(cat=="Listing") {
+      Listings.update( {_id: postid} , { $set: { name: params.name , desc: params.desc , price: params.price , quantity: params.quantity } });
+    }
+    if(cat=="Event") {
+      Listings.update( {_id: postid} , { $set: { name: params.name , desc: params.desc , location: params.location , privacy: params.privacy , maxAttend: params.maxAttend} });
+    }
+    
+    return true;
   }
 
 });

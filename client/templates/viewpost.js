@@ -1,4 +1,10 @@
 //viewpost.js
+Template.viewpost.onCreated(function() {
+  $('.ui.modal').modal({context:'#wrapper'})
+  ;
+});
+
+Template
 Template.viewpost.helpers({
   nameHelper: function(uid) {
     var n = Meteor.users.findOne( {_id:uid} );  
@@ -70,10 +76,50 @@ Template.viewpost.helpers({
 
 Template.viewpost.events({
   'click #editbutton': function(event, template) {
-    console.log("Clicked edit");
+    $('#editprompt').modal({context:'#wrapper'}).modal('toggle');
   },
   'click #deletebutton': function(event, template) {
-    console.log("Clicked delete");
-    $('#deleteprompt').modal('show');
+    $('#deleteprompt').modal({context:'#wrapper'}).modal('toggle');
+  },
+  'click #declinedelete': function(event, template) {
+    $('#deleteprompt').modal("hide dimmer").modal("hide");
+  },
+  'click #acceptdelete': function(event, template) {
+    $('#deleteprompt').modal("hide dimmer").modal("hide");
+    
+    Meteor.call("deletePost" , template.data.thisPost._id );
+    Router.go("main");
+  },  
+  'click #declineedit': function(event, template) {
+    $('#editprompt').modal("hide dimmer").modal("hide");
+  },
+  'submit': function(event, template) {
+    $('#deleteprompt').modal("hide dimmer").modal("hide");
+    
+		event.preventDefault();
+    var name = template.$('[name=name]').val();
+		var desc = template.$('[name=desc]').val();
+		var category = template.$('[name=category]').val();
+    var locat = null;
+    var privacy = null;
+    var maxAttend = null;
+    var price = null;
+	  var quantity = null;  
+    
+    if(category=="Listing") {
+      price = template.$('[name=price]').val();
+      quantity = template.$('[name=quantity]').val();
+    }
+    
+    if(category=="Event") {
+      locat = template.$('[name=location]').val();
+      privacy = template.$('[name=privacy]').val();
+      maxAttend = template.$('[name=maxAttend]').val();
+    }
+    
+    var data = { name: name , desc: desc , location: locat , privacy: privacy , maxAttend: maxAttend , price: price , quantity: quantity };
+    
+    Meteor.call("updatePost" , template.data.thisPost._id , category , data );
+    document.location.reload(true);
   }
 });
