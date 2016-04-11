@@ -1,7 +1,3 @@
-T = [ { _id: "1" , name: "Bobert Joseph" , date: "2 days ago" , recentMessage: "Woah dude, that's messed up." , avatar: "http://previews.123rf.com/images/vgstudio/vgstudio1006/vgstudio100600037/7269033-Portrait-of-happy-smiling-man-isolated-on-white-Stock-Photo-man-men-face.jpg" },
-      { _id: "2" , name: "Rachel Lagann" , date: "20 minutes ago" , recentMessage: "I have no idea what you mean." , avatar: "http://previews.123rf.com/images/kurhan/kurhan1111/kurhan111100105/11182717-Business-woman--Stock-Photo-lawyer.jpg" },
-    ];
-
 Template.newMessageList.helpers({
   hasConversations: function() {
     return "positive";
@@ -22,7 +18,8 @@ Template.newMessageList.helpers({
       }
     });
     if(uObj) {
-      return uObj.name;
+      //// returns just the userID of newest sender need handler to get user name from ID
+      return uObj.recentSenderName;
     } else {
       return null;
     }
@@ -39,8 +36,11 @@ Template.newMessageList.helpers({
       }
     });
     if(uObj) {
-      return uObj.avatar;
-    } else {
+      // we will need a new handler to get user avater from recentSender user ID
+      //return uObj.avatar;
+        return "http://previews.123rf.com/images/kurhan/kurhan1111/kurhan111100105/11182717-Business-woman--Stock-Photo-lawyer.jpg";
+     } else {
+    
       return null;
     }
   },
@@ -56,7 +56,7 @@ Template.newMessageList.helpers({
       }
     });
     if(uObj) {
-      return uObj.date;
+      return dateHelper(uObj.date) + ' ago';
     } else {
       return null;
     }
@@ -78,5 +78,20 @@ Template.newMessageList.helpers({
       return null;
     }
   }
+    
   
 });
+
+  function dateHelper(date) {
+    var L = new Date(date);
+    var diff = Math.abs(Date.now() - L.getTime());
+    var diffDays = Math.floor(diff / (1000 * 3600 * 24)); 
+    diff = diff - (diffDays * (1000 * 3600 * 24));
+    var diffHours = Math.floor(diff / (1000 * 3600)); 
+    diff = diff - (diffHours * (1000 * 3600));
+    var diffMinutes = Math.floor(diff / (1000 * 60)); 
+    if(diffDays <= 0 && diffHours <= 0 && diffMinutes <= 0) {
+      return "<1m"
+    }
+    return (diffDays > 0 ? diffDays + "d " : "") + (diffHours > 0 ? diffHours + "h " : "") + (diffMinutes > 0 ? diffMinutes + "m " : "");
+  }

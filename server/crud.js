@@ -90,6 +90,29 @@ Meteor.methods({
     }
     
     return true;
-  }
+  },
+  
+  addMessage: function(sendTo,message){
+   // get the name of sender;
+   userData = Meteor.users.findOne({_id:Meteor.userId()}).profile;
+   lastFullName = userData.firstname + " " + userData.lastname;
+   newMessageID =  Messages.insert({ personA:sendTo, personB:Meteor.userId(),recentMessage:message,recentSender:Meteor.userId(), recentSenderName:lastFullName ,date:new Date()});   
+   MessagesDetails.insert({messageId:newMessageID, sender:Meteor.userId(), receiver:sendTo, detailText:message, sendDate: new Date(), readDate: null});
+ 
+  },
+  replyMessage: function(mID,receiverid,message){
+    userData = Meteor.users.findOne({_id:Meteor.userId()}).profile;
+   lastFullName = userData.firstname + " " + userData.lastname;
+   Messages.update({_id:mID},{$set: {recentMessage:message,recentSender:Meteor.userId(),date:new Date(),recentSenderName:lastFullName} });
+   MessagesDetails.insert({
+     messageId:mID,
+     sender:Meteor.userId(),
+     receiver:receiverid,
+     detailText:message, 
+     sendDate: new Date(),
+     readDate: null
+   });
 
+
+  }
 });
