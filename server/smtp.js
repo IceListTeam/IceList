@@ -30,6 +30,7 @@ Meteor.startup(function () {
   };
   Accounts.emailTemplates.resetPassword.text = function (user, url) {
     url = url.replace('#/', '');
+    url = url.replace('reset-password','resetpassword');
     return " To reset your password, simply click the link below:\n\n" + url;
   };
 });
