@@ -44,6 +44,12 @@
               <a class="item" href="viewpost/{{_id}}/">
                 <div class="right floated content" style="font-size: 60%;">
                   posted {{dateHelper createdAt}} ago
+
+                  <form action="" class="form" method="">
+                    <input type="hidden" name="idlist" value="{{listId}}">
+                    <input type="submit" name="buttonname" value="Subscribe">
+                  </form>
+
                 </div>
                 <i class="circular inverted {{catHelper category}} icon"></i>
                 <div class="content" style="font-size: 80%;">
