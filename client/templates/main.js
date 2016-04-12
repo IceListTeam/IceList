@@ -39,3 +39,33 @@ Template.main.helpers({
     }
   }
 });
+
+Template.main.events({
+  'submit form': function (event, template) {
+        event.preventDefault();
+        console.log("clicked");
+        if (Meteor.user()){
+           console.log("this is user");
+           var SubVal = $(event.target.buttonname).val();
+           //console.log($(event.target.buttonname).val());
+           console.log($(event.target._id).val());
+           if (SubVal == 'Subscribe')
+           {
+             console.log("join");
+             Meteor.subscribe("events", $(event.target._id).val());
+             //may need send user id too
+             $(event.target.buttonname).val("Unsubscribe");
+           }
+           else if (SubVal == 'Unsubscribe')
+           {
+             console.log("Leave");
+             Meteor.subscribe("events", "");
+             $(event.target.buttonname).val("Subscribe");
+           }
+        }
+        else
+        {
+           alert("login as user first!!!");
+        }
+    }
+    });

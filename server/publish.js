@@ -48,3 +48,20 @@ Meteor.publish("userData", function () {
         {fields: {"profile":1,"_id":1}});
 });
 
+//////
+Meteor.publish('events', function(_id) {
+  if (_id)
+  {
+    //check(listId, String);
+    console.log("subscribe to " + _id);
+  return Events.find({_id: _id});
+  //find({ name: "David" }).fetch();
+  }
+  else
+  {
+    console.log("unsubscribe from " + _id);
+    return this.stop();
+  }
+  });
+/////////
+
