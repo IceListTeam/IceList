@@ -35,12 +35,12 @@
           </div>
           
           <div class="ui fluid left icon input">
-            <textarea name="desc" placeholder="Description" rows="4" style="resize: none;" required></textarea>
+            <textarea name="desc" placeholder="Description" rows="4" style="resize: none;" required maxlength="2000"></textarea>
             <span title="Description"></span>
           </div>
 
           <div class="input-symbol">
-            <input type="text" name="attend" placeholder="Attending" required />
+            <input type="number" name="attend"  value="1" placeholder="Attending" required min="1"/>
             <span title="Attending"></span>
           </div>
 
@@ -50,8 +50,10 @@
           </div>
 
           <div class="input-symbol">
-            <input type="text" name="privacy" placeholder="Privacy" required />
-            <span title="Privacy"></span>
+            <select name="privacy">
+               <option value="Public">Public</option>
+               <option value="Private">Private</option>
+            </select>
           </div>
                     
           <div class="input-symbol">

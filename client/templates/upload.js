@@ -1,33 +1,49 @@
-Template.upload.created = function() {
-  var self = this;
+ var uploader = new ReactiveVar(); 
+ var imageDetails = new Mongo.Collection('images'); 
+var currentUserId = Meteor.userId(); 
 
-  self.limit = new ReactiveVar;
-  self.limit.set(parseInt(Meteor.settings.public.recordsPerPage));
-  
-  Tracker.autorun(function() {
-    Meteor.subscribe('images', self.limit.get());
-  });
-}
+Template.upload.events({'change .uploadFile': function(event, template) {
 
-Template.upload.rendered = function() {
-  var self = this;
-  // is triggered every time we scroll
-  // test
-  $(window).scroll(function() {
-    if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-      incrementLimit(self);
-    }
-  });
-}
+             event.preventDefault();
 
+             var upload1 = new Slingshot.Upload("myImageUploads");
+             var timeStamp = Math.floor(Date.now());                 
+         upload1.send(document.getElementById('uploadFile').files[0], function (error, downloadUrl) {
+             uploader.set();
+             if (error) {
+               console.error('Error uploading');
+               alert (error);
+             }
+             else{
+               console.log("Success!");
+               console.log('uploaded file available here: '+downloadUrl);
+               imageDetails.insert({
+                   imageurl: downloadUrl,
+                   time: timeStamp,
+                   uploadedBy: currentUserId
+               });
+             }
+             });
+             uploader.set(upload1);
+           }
+       });
+	   
 Template.upload.helpers({
-  'images': function() {
-    return Images.find();
-  }
-});
 
-var incrementLimit = function(templateInstance) {
-  var newLimit = templateInstance.limit.get() + 
-    parseInt(Meteor.settings.public.recordsPerPage);
-  templateInstance.limit.set(newLimit);
-}
+    isUploading: function () {
+        return Boolean(uploader.get());
+    },
+
+    progress: function () {
+    var upload2 = uploader.get();
+    if (upload2)
+    return Math.round(upload2.progress() * 100);
+    },
+
+    url: function () {
+
+    return imageDetails.findOne({uploadedBy: currentUserId},{sort:{ time : -1 } });
+
+    },
+
+});

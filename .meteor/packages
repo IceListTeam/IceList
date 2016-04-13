@@ -25,3 +25,5 @@ cfs:filesystem
 standard-minifier-css
 standard-minifier-js
 momentjs:moment
+edgee:slingshot
+insecure
