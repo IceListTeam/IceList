@@ -6,8 +6,7 @@ Template.myPosts.events({
 		event.preventDefault();
 		var desc = template.$('[name=desc]').val();
 		var category = template.$('[name=category]').val();
-
-		console.log("you clicked update");
+		
 		//get the id of the event and update it
 		console.log(template.data.showMyEvents);
 

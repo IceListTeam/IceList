@@ -10,7 +10,7 @@ Meteor.methods({
       name: postName,
       desc: longDesc,
       category: category,
-      attend: 0,
+      attend: new Array(),
       maxAttend: parseInt(numPeople),
       time: time,
       privacy: privacy,
@@ -24,6 +24,17 @@ Meteor.methods({
     return Listings.findOne({name: postName});
   },
 
+  addAttendee: function(attendid , eventid) {
+    //check if userid (attendid) is already in the attend array
+    if( Listings.find({ _id: eventid , attend: { $in: attendid }}) )
+    {
+      throw new Meteor.Error("Already exists");
+    }
+    else
+    {
+      Listings.update({_id: eventid} , {$push: {attend: attendid}});
+    }
+  },
   
   addListing: function (postName , longDesc , category , price , quantity , location) {
   

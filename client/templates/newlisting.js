@@ -1,4 +1,7 @@
 //new-listing.js
+ var uploader = new ReactiveVar(); 
+ var imageDetails = new Mongo.Collection('images'); //may not need this since its declared in upload.js
+var currentUserId = Meteor.userId(); 
 
 Template.newlisting.events({
 	'submit' : function(event, template)
@@ -13,5 +16,32 @@ Template.newlisting.events({
 
 		Meteor.call('addListing', name , desc , category , price , quantity , locat);
     Router.go("main");
+	},
+
+	'click #uploadImage' : function(event, template){
+		console.log('uplodaimage clicked!');
+		             event.preventDefault();
+
+             var upload1 = new Slingshot.Upload("myImageUploads");
+             var timeStamp = Math.floor(Date.now());                 
+         upload1.send(document.getElementById('uploadFile').files[0], function (error, downloadUrl) {
+             uploader.set();
+             if (error) {
+               console.error('Error uploading');
+               alert (error);
+             }
+             else{
+               console.log("Success!");
+               console.log('uploaded file available here: '+downloadUrl);
+               imageDetails.insert({
+                   imageurl: downloadUrl,
+                   time: timeStamp,
+                   uploadedBy: currentUserId
+               });
+             }
+             });
+             uploader.set(upload1);
+           }
 	}
+	
 });

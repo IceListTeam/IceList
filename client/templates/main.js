@@ -8,6 +8,11 @@ Template.main.helpers({
     }
     return "undefined";
   },
+
+  subHelper: function(cate) {
+    return cate=="Event" ? "teal checkmark" : "blue mail";
+  },
+
   catHelper: function(cate) {
     return cate=="Event" ? "teal calendar outline" : "blue dollar";
   },
@@ -39,3 +44,29 @@ Template.main.helpers({
     }
   }
 });
+
+Template.main.events({
+
+  'click .subbutton': function(event, template){
+
+    event.preventDefault();
+    console.log("cat cat cat cat");
+    var cata = "";
+    for( var i = 0 ; i < template.data.showListings.length ; i++)
+    {
+      if(template.data.showListings[i]._id==event.target.id)
+      {
+        cata = template.data.showListings[i].category;
+      }
+    }
+    if(cata=="Event")
+    {
+      Meteor.call("addAttendee" , Meteor.userId , event.target.id);
+    }
+    else
+    {
+      console.log("meow");
+    }
+
+  }
+})
