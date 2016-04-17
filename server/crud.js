@@ -26,9 +26,13 @@ Meteor.methods({
 
   addAttendee: function(attendid , eventid) {
     //check if userid (attendid) is already in the attend array
-    if( Listings.find({ _id: eventid , attend: { $in: attendid }}) )
+    if( Listings.findOne({ _id: eventid , attend: attendid}) )
     {
       throw new Meteor.Error("Already exists");
+    }
+    else if( Listings.findOne({ _id: eventid })["maxAttend"] <= Listings.findOne({ _id: eventid })["attend"].length)
+    {
+      throw new Meteor.Error("Event is already full.");
     }
     else
     {

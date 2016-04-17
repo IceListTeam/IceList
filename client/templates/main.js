@@ -9,10 +9,6 @@ Template.main.helpers({
     return "undefined";
   },
 
-  subHelper: function(cate) {
-    return cate=="Event" ? "teal checkmark" : "blue mail";
-  },
-
   catHelper: function(cate) {
     return cate=="Event" ? "teal calendar outline" : "blue dollar";
   },
@@ -42,15 +38,24 @@ Template.main.helpers({
     } else {
       return "$" + pri;
     }
+  },
+  
+  sortActive: function(sort , curr) {
+    if (sort==curr) {
+      return "active";
+    }
+    else
+    {
+      return "";
+    }
   }
 });
 
 Template.main.events({
 
   'click .subbutton': function(event, template){
-
     event.preventDefault();
-    console.log("cat cat cat cat");
+    
     var cata = "";
     for( var i = 0 ; i < template.data.showListings.length ; i++)
     {
@@ -59,13 +64,14 @@ Template.main.events({
         cata = template.data.showListings[i].category;
       }
     }
+    
     if(cata=="Event")
     {
-      Meteor.call("addAttendee" , Meteor.userId , event.target.id);
+      Meteor.call("addAttendee" , Meteor.userId() , event.target.id);
     }
     else
     {
-      console.log("meow");
+      Router.go("/messages/new/");
     }
 
   }
