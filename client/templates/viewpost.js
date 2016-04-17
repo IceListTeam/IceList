@@ -24,22 +24,10 @@ Template.viewpost.helpers({
     return Meteor.userId() == owner; 
   },
   
-  userImage: function () {
-    /*if( Meteor.user().profile["picture"] != null)
-    {
-      var img = Images.findOne( {"_id": Meteor.user().profile["picture"] } );
-      if( img )
-      {
-        return img;
-      }
-      else
-      {
-        Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.picture": null }});
-        return Images.findOne( { _id : "YBtQ8Wb4YDHRJjHTd" } );
-      }
-    }*/
-    return "/img/default_pic.jpg";
+  userImage: function (owner) {
+    return Meteor.users.find(_id: owner)["profile.picture"];
   },
+  
   dateHelper: function(postdate) {
     return moment(postdate).format("ddd, MMMM Do YYYY, h:mm a");
   },

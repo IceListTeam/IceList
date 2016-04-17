@@ -101,7 +101,8 @@ Template.join.events({
       major: major,
       gradDate: gradDate,
       phone: phone,
-      email:email
+      email: email,
+      picture: "https://s3.amazonaws.com/icelistphotobucket/Images/defaultprofile.jpg"
     }
 
     // Create a new user
