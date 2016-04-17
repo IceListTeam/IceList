@@ -1,6 +1,3 @@
-var uploader = new ReactiveVar(); 
-var currentUserId = Meteor.userId(); 
-var imagelocation = ""
 
 Template.upload.events({'change .uploadFile': function(event, template) {
 
@@ -9,20 +6,13 @@ Template.upload.events({'change .uploadFile': function(event, template) {
   var upload1 = new Slingshot.Upload("myImageUploads");
   var timeStamp = Math.floor(Date.now());                 
   upload1.send(document.getElementById('uploadFile').files[0], function (error, downloadUrl) {
-    uploader.set();
     if (error) {
       console.error('Error uploading');
-      alert (error);
+      alert(error);
     }
     else{
-      console.log("Success!");
-      console.log('uploaded file available here: '+downloadUrl);
-      imageDetails.insert({
-        imageurl: downloadUrl,
-        time: timeStamp,
-        uploadedBy: currentUserId
-      });
-      template.$("[id=imgloc]").html(downloadUrl);
+      template.$("[id=imgloc]").html( template.$("[id=imgloc]").html() + "<img src=\""+downloadUrl+"\" height=\"100px\">");
+      template.$("[id=imageurls]").val( template.$("[id=imageurls]").val() + downloadUrl + "|");
     }
   });
   uploader.set(upload1);
