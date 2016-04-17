@@ -1,6 +1,6 @@
 //new-listing.js
  var uploader = new ReactiveVar(); 
- var imageDetails = new Mongo.Collection('images'); //may not need this since its declared in upload.js
+ //var imageDetails = new Mongo.Collection('images'); //may not need this since its declared in upload.js
 var currentUserId = Meteor.userId(); 
 
 Template.newlisting.events({

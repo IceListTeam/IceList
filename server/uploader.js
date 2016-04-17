@@ -1,16 +1,17 @@
-var imageDetails = new Mongo.Collection('images');
+//var imageDetails = new Mongo.Collection('images');
 
 Slingshot.fileRestrictions("myImageUploads", {
   allowedFileTypes: ["image/png", "image/jpeg", "image/gif"],
   maxSize: 2 * 1024 * 1024,
 });
 
+
 Slingshot.createDirective("myImageUploads", Slingshot.S3Storage, {
-  AWSAccessKeyId: "AKIAJ7H3ZOLBBV5K4RSA ", 
-  AWSSecretAccessKey: "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", 
-  bucket: "icelistphotobucket",
-  acl: "public-read",
-  region: "us-east-1",
+  AWSAccessKeyId: Meteor.settings.private.AWSAccessKeyId, 
+  AWSSecretAccessKey: Meteor.settings.private.AWSSecretAccessKey, 
+  bucket: Meteor.settings.private.bucket,
+  acl: Meteor.settings.private.acl,
+  region: Meteor.settings.private.region,
 
   authorize: function () {
     if (!this.userId) {
