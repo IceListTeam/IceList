@@ -1,6 +1,6 @@
- var uploader = new ReactiveVar(); 
- var imageDetails = new Mongo.Collection('images'); 
+var uploader = new ReactiveVar(); 
 var currentUserId = Meteor.userId(); 
+var imagelocation = ""
 
 Template.upload.events({'change .uploadFile': function(event, template) {
 
@@ -17,6 +17,7 @@ Template.upload.events({'change .uploadFile': function(event, template) {
              else{
                console.log("Success!");
                console.log('uploaded file available here: '+downloadUrl);
+               imagelocation = downloadUrl;
                imageDetails.insert({
                    imageurl: downloadUrl,
                    time: timeStamp,
@@ -42,7 +43,9 @@ Template.upload.helpers({
 
     url: function () {
 
-    return imageDetails.findOne({uploadedBy: currentUserId},{sort:{ time : -1 } });
+    //console.log( imageDetails.findOne({uploadedBy: currentUserId},{sort:{ time : -1 } }) );
+    
+     return("the image location is: " + imagelocation);
 
     },
 
