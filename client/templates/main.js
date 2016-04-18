@@ -32,9 +32,16 @@ Template.main.helpers({
     return "";
   },
   
-  descHelper: function(cat , loc , pri) {
+  descHelper: function(cat , priv , loc , pri) {
     if(cat=="Event") {
-      return loc;
+      if(priv != "Private")
+      {
+        return loc;
+      }
+      else
+      {
+        return "<i class=\"tiny lock icon\"></i>Private";
+      }
     } else {
       return "$" + pri;
     }
@@ -67,29 +74,3 @@ Template.main.helpers({
     }
   }
 });
-
-Template.main.events({
-
-  'click .subbutton': function(event, template){
-    event.preventDefault();
-    
-    var cata = "";
-    for( var i = 0 ; i < template.data.showListings.length ; i++)
-    {
-      if(template.data.showListings[i]._id==event.target.id)
-      {
-        cata = template.data.showListings[i].category;
-      }
-    }
-    
-    if(cata=="Event")
-    {
-      Meteor.call("addAttendee" , Meteor.userId() , event.target.id);
-    }
-    else
-    {
-      Router.go("/messages/new/");
-    }
-
-  }
-})

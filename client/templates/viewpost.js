@@ -2,10 +2,12 @@
 Template.viewpost.onCreated(function() {
   $('.ui.modal').modal({context:'#wrapper'})
   ;
+  $('img').popup();
 });
 
-Template
+
 Template.viewpost.helpers({
+
   nameHelper: function(uid) {
     var n = Meteor.users.findOne( {_id:uid} );  
     if(n) {
@@ -16,6 +18,11 @@ Template.viewpost.helpers({
   colorHelper: function(cate) {
     return cate=="Event" ? "teal" : "blue";
   },
+  
+  countHelper: function(attend) {
+    return attend.length;
+  },
+  
   iconHelper: function(cate) {
     return cate=="Event" ? "calendar outline" : "dollar";
   },
@@ -25,15 +32,17 @@ Template.viewpost.helpers({
   },
   
   userImage: function (owner) {
-    return Meteor.users.find(_id: owner)["profile.picture"];
+    return Meteor.users.findOne({_id: owner})["profile"]["picture"];
   },
   
   dateHelper: function(postdate) {
     return moment(postdate).format("ddd, MMMM Do YYYY, h:mm a");
   },
-  catIs: function(cat,typ) {
+  
+  is: function(cat,typ) {
     return cat == typ;
   },
+  
   dateDiffHelper: function(date) {
     var L = new Date(date);
     var diff = Math.abs(Date.now() - L.getTime());
@@ -59,10 +68,62 @@ Template.viewpost.helpers({
     } else {
       return "$" + pri;
     }
+  },
+  
+  userAttend: function(postid) {
+    if( Listings.findOne({ _id: postid , attend: Meteor.userId() }) )
+    {
+        return true;
+    }
+    else 
+    {
+      return false;
+    }
+  },
+  
+  showPrivate: function(postid,privacy) {
+    if(privacy=="Private") 
+    {
+      if( Listings.findOne({ _id: postid , attend: Meteor.userId() }) )
+      {
+        return false;
+      }
+      else
+      {
+        return true;
+      }
+    }
+    else
+    {
+      return false;
+    }
   }
 });
 
 Template.viewpost.events({
+
+  'click .unsubbutton': function(event, template){
+    event.preventDefault();
+    
+    var cata = template.data.thisPost.category;
+    
+    if(cata=="Event")
+    {
+      Meteor.call("removeAttendee" , Meteor.userId() , template.data.thisPost._id);
+    }
+  },
+
+  'click .subbutton': function(event, template){
+    event.preventDefault();
+    
+    var cata = template.data.thisPost.category;
+    
+    if(cata=="Event")
+    {
+      Meteor.call("addAttendee" , Meteor.userId() , template.data.thisPost._id);
+    }
+  },
+  
   'click #editbutton': function(event, template) {
     $('#editprompt').modal({context:'#wrapper'}).modal('toggle');
   },

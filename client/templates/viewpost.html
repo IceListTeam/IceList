@@ -20,7 +20,7 @@
                 {{/if}}
                 <div class="ui {{colorHelper category}} ribbon label" style="width: 80%; vertical-align: middle; line-height: 30px;">
                   <i class="inverted big {{iconHelper category}} icon" style="vertical-align: top;"></i>
-                  <b style="font-size: 120%;">{{name}}</b>
+                  <b style="font-size: 120%;">{{name}}{{#if is privacy "Private"}}<span title="Private"><i class="tiny circular {{colorHelper category}} lock icon" style="vertical-align: top; margin-left: 10px;background-color: #FFF;"></i></span>{{/if}}</b>
                 </div>
                 
                 <div style="margin-top: 5px; font-size: 90%;"><span style="margin-left: 10px;">by 
@@ -31,12 +31,31 @@
                   <div class="ui horizontal divider header" style="font-size: 100%;">Details</div>
                   <div><i class="circular inverted {{colorHelper category}} wait icon"></i> {{dateHelper createdAt}}</div>
                   
-                  {{#if catIs category "Listing"}}
+                  {{#if is category "Listing"}}
                   <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} dollar icon"></i>${{price}}</div>
                   <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} cube icon"></i>{{quantity}} remaining</div>
                   {{else}}
-                  <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} home icon"></i>{{location}}</div>
-                  <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} users icon"></i>{{attend}}/{{maxAttend}}</div>
+                  <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} home icon"></i>
+                  {{#if showPrivate _id privacy}}
+                    Only visible by Attendees
+                  {{else}}
+                    {{location}}, {{time}}
+                  {{/if}}
+                  </div>
+                  <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} users icon"></i>{{countHelper attend}}/{{maxAttend}}
+                  {{#if userAttend _id}}
+                    <span class="mini ui grey button unsubbutton">Leave</span>
+                  {{else}}
+                    <span class="mini ui {{colorHelper category}} button subbutton">Join</span>
+                  {{/if}}</div>
+                  <div>
+                  <div class="ui horizontal divider header" style="font-size: 100%; margin-top: 5px;">Attending</div>
+                  {{#each attend}}
+                    <a href="{{pathFor 'profile' userid=this}}" ><div class="ui basic small image label" >
+                      <img src="{{userImage this}}">{{nameHelper this}}
+                    </div></a>
+                  {{/each}}
+                  </div>
                   {{/if}}
                   <div class="ui segment">
                     <div class="ui top left attached {{colorHelper category}} label"><i class="comment icon"></i></div>
@@ -99,7 +118,7 @@
                     <textarea name="desc" rows="4" style="resize: none;" required >{{desc}}</textarea>
                   </div>
                 </div>
-                {{#if catIs category "Listing"}}
+                {{#if is category "Listing"}}
                 <div class="item">
                   <div class="ui fluid left icon input">
                     <i class="{{colorHelper category}} dollar icon"></i>

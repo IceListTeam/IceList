@@ -39,6 +39,18 @@ Meteor.methods({
       Listings.update({_id: eventid} , {$push: {attend: attendid}});
     }
   },
+
+  removeAttendee: function(attendid , eventid) {
+    //check if userid (attendid) is already in the attend array
+    if( Listings.findOne({ _id: eventid , attend: attendid}) == null )
+    {
+      throw new Meteor.Error("Cannot remove, was not added");
+    }
+    else
+    {
+      Listings.update({_id: eventid} , {$pull: {attend: attendid}});
+    }
+  },
   
   addListing: function (postName , longDesc , category , price , quantity , location) {
   
@@ -50,7 +62,7 @@ Meteor.methods({
       name: postName,
       desc: longDesc,
       category: category,
-      price: parseInt(price),
+      price: parseFloat(price),
       quantity: parseInt(quantity),
       location: location,
       status: "Unsold",
@@ -98,10 +110,10 @@ Meteor.methods({
     }
     
     if(cat=="Listing") {
-      Listings.update( {_id: postid} , { $set: { name: params.name , desc: params.desc , price: params.price , quantity: params.quantity } });
+      Listings.update( {_id: postid} , { $set: { name: params.name , desc: params.desc , price: parseFloat(params.price) , quantity: parseInt(params.quantity) } });
     }
     if(cat=="Event") {
-      Listings.update( {_id: postid} , { $set: { name: params.name , desc: params.desc , location: params.location , privacy: params.privacy , maxAttend: params.maxAttend} });
+      Listings.update( {_id: postid} , { $set: { name: params.name , desc: params.desc , location: params.location , privacy: params.privacy , maxAttend: parseInt(params.maxAttend)} });
     }
     
     return true;
@@ -115,6 +127,7 @@ Meteor.methods({
    MessagesDetails.insert({messageId:newMessageID, sender:Meteor.userId(), receiver:sendTo, detailText:message, sendDate: new Date(), readDate: null});
  
   },
+  
   replyMessage: function(mID,receiverid,message){
     userData = Meteor.users.findOne({_id:Meteor.userId()}).profile;
    lastFullName = userData.firstname + " " + userData.lastname;
@@ -127,7 +140,6 @@ Meteor.methods({
      sendDate: new Date(),
      readDate: null
    });
-
-
   }
+  
 });
