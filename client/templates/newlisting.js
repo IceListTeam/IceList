@@ -41,7 +41,7 @@ Template.newlisting.events({
              }
              });
              uploader.set(upload1);
-           }
-	}
+           
+	} 
 	
 });

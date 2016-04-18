@@ -1,16 +1,64 @@
 <template name="messages">
-<a href="/messages">Back To Messages</a>
+
+
 {{#if _id}}
-  <ul>
-  {{#each messageDetails}}
-    <li class="{{otherPerson userId receiver}}">{{detailText}}</li>   
-  {{else}}
-    Opps, this conversation has no messages.
-  {{/each}}
-  </ul>
-  <textarea name="replyTextArea"></textarea> 
-  <input type="hidden" name="receiver" value="{{receiver}}">
-  <button type="button" class="send_reply">Reply</button>
+  <div class="page auth">
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+	  <a href="/messages" style="width: 100%;"  class=" ui button">Back To Messages</a>
+<div class="ui feed">
+        {{#each messageDetails}}
+          <div class="event">
+		  {{#if otherPerson ../userId2 receiver }}
+            <div class="label">
+              <img src="{{msgAvatar}}">
+            </div>
+            <div class="content">              
+			  <div class="summary">			  
+              <a>{{senderName}} </a>
+                <div class="date">
+                  {{dateHelper sendDate}} - ago 
+                </div>
+              </div>
+              <div class="extra text">
+                {{detailText}}
+              </div>
+            </div>
+			
+			{{else}}
+            <div style="text-align:right" class="content">              
+			  <div class="summary">	
+				<div class="date">
+                  {{dateHelper sendDate}} - ago
+                </div>
+              <a>{{senderName}} </a>                
+              </div>
+              <div class="extra text">
+                {{detailText}} 
+              </div>
+            </div>
+			<div class="label">
+              <img src="{{msgAvatar}}">
+            </div>
+			
+			
+			{{/if}}
+          </div>
+        {{/each}}
+</div>
+<div class="ui form">
+  <div class="field">
+  <textarea name="replyTextArea"></textarea>
+  <button style="width: 100%;" type="button" class="send_reply btn-primary">Reply</button>
+  </div>
+  
+  </div>
+  
+</div>
+  
+</div>
+</div>
+  
 {{else}}
   {{#if _new}}
     Create New Message
