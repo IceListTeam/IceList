@@ -10,11 +10,6 @@
       <div class="wrapper-auth">
         <h1 class="title-auth">Update.</h1>
         <p class="subtitle-auth" >Update your profile picture below.</p>
-		{{#with currentUser}}
-			<div>
-				You are logged in {{currentUser.profile.email}}
-			</div>
-		{{/with}}
 
         <form class="ui form" id="picupload">
           {{#if errorMessages}}
@@ -31,10 +26,9 @@
           </div>
           
           <div class="item">
-            {{#each userImage}}
-            <div id="dropzone" class="dropzone"><div class="well well-drop-zone"><center><img class="ui small circular image" src="{{this.url store="images"}}"/></center></div></div>
-            {{/each}}
-            <p>Drop an image above to upload a new avatar.</p>
+            <center id="imgloc"><img class="ui small circular image" src="{{userImage}}" style="height: 100px; width: 100px;" /></center>
+            <input type="file" class="uploadFile" id="uploadFile">
+            <p>Select an image and it will upload.</p>
           </div>
           
         </form>

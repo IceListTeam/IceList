@@ -1,35 +1,26 @@
 Template.updatepicture.helpers({
   userImage: function () {
-    /*if( Meteor.user().profile["picture"] != null)
-    {
-      var img = Images.findOne( {"_id": Meteor.user().profile["picture"] } );
-      if( img )
-      {
-        return img;
-      }
-      else
-      {
-        Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.picture": null }});
-        return Images.findOne( { _id : "YBtQ8Wb4YDHRJjHTd" } );
-      }
-    }*/
-    return Images.find( { "_id" : "YBtQ8Wb4YDHRJjHTd" });
+    return Meteor.users.findOne({_id: Meteor.userId()})["profile"]["picture"];
   }
 });
 
 Template.updatepicture.events({
-  'dropped #dropzone': function(e) {
-      FS.Utility.eachFile(e, function(file) {
-        var newFile = new FS.File(file);
-        
-        Images.insert(newFile, function (error, fileObj) {
-          if (error) {
-            console.log("error in upload");
-          } else {
-            Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.picture": fileObj._id }});
-            Router.go('updatepicture');
-          }
-      });
+  'change .uploadFile': function(event, template) {
+    event.preventDefault();
+
+    var metaContext = { context: "profile" };
+    var upload1 = new Slingshot.Upload("myImageUploads",metaContext);
+    var timeStamp = Math.floor(Date.now());                 
+    upload1.send(document.getElementById('uploadFile').files[0], function (error, downloadUrl) {
+      if (error) {
+        console.error('Error uploading');
+        alert(error);
+      }
+      else{
+        template.$("[id=imgloc]").html("<img class=\"ui small circular image\" src=\""+downloadUrl+"\" style=\"height: 100px; width: 100px;\" />");
+        Meteor.call("updatePicture",Meteor.userId(),downloadUrl);
+      }
     });
+    uploader.set(upload1);
   }
 });

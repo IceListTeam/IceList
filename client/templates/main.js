@@ -48,20 +48,7 @@ Template.main.helpers({
   },
   
   userImage: function (owner) {
-    /*if( Meteor.user().profile["picture"] != null)
-    {
-      var img = Images.findOne( {"_id": Meteor.user().profile["picture"] } );
-      if( img )
-      {
-        return img;
-      }
-      else
-      {
-        Meteor.users.update( { _id: Meteor.user()._id }, { $set: { "profile.picture": null }});
-        return Images.findOne( { _id : "YBtQ8Wb4YDHRJjHTd" } );
-      }
-    }*/
-    return "/img/default_pic.jpg";
+    return Meteor.users.findOne({_id: owner})["profile"]["picture"];
   },
   
   sortActive: function(sort , curr) {

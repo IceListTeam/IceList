@@ -24,6 +24,10 @@ Meteor.methods({
     return Listings.findOne({name: postName});
   },
 
+  updatePicture: function(userid , photourl) {
+    Meteor.users.update({_id: userid} , {$set: {"profile.picture": photourl}});
+  },  
+  
   addAttendee: function(attendid , eventid) {
     //check if userid (attendid) is already in the attend array
     if( Listings.findOne({ _id: eventid , attend: attendid}) )
