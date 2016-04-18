@@ -128,7 +128,7 @@ Meteor.methods({
    userData = Meteor.users.findOne({_id:Meteor.userId()}).profile;
    lastFullName = userData.firstname + " " + userData.lastname;
    newMessageID =  Messages.insert({ personA:sendTo, personB:Meteor.userId(),recentMessage:message,recentSender:Meteor.userId(), recentSenderName:lastFullName ,date:new Date()});   
-   MessagesDetails.insert({messageId:newMessageID, sender:Meteor.userId(), receiver:sendTo, detailText:message, sendDate: new Date(), readDate: null});
+   MessagesDetails.insert({senderName:lastFullName, messageId:newMessageID, sender:Meteor.userId(), receiver:sendTo, detailText:message, sendDate: new Date(), readDate: null});
  
   },
   
@@ -137,6 +137,7 @@ Meteor.methods({
    lastFullName = userData.firstname + " " + userData.lastname;
    Messages.update({_id:mID},{$set: {recentMessage:message,recentSender:Meteor.userId(),date:new Date(),recentSenderName:lastFullName} });
    MessagesDetails.insert({
+	 senderName:lastFullName,
      messageId:mID,
      sender:Meteor.userId(),
      receiver:receiverid,
