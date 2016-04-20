@@ -1,4 +1,4 @@
-<template name="main">
+<template name="profile">
 <div class="page auth">
     <nav>
       <div class="nav-group">
@@ -8,7 +8,18 @@
 	
    <div class="content-scrollable">
       <div class="wrapper-auth">
-        <center><div class="ui compact segment"><img src="/img/icelist_banner.png" width="300"/></div></center>
+        <div class="ui card" style="width: 300px; margin-left: auto; margin-right: auto;">
+          <div class="image">
+            <img src="{{userImage profileUser._id}}" style="width: 300px; height: 300px;">
+          </div>
+          <div class="content">
+            <a class="header">{{nameHelper profileUser._id}}</a>
+            <div class="meta">
+              <span class="date">Joined {{dateStringHelper profileUser.createdAt}}</span><br/>
+              <span class="major"><b>{{profileUser.profile.major}} Major</b></span>
+            </div>
+          </div>
+        </div>
         <div class="ui top attached tiny tabular menu" style="font-size: 80%;">
           <a class="{{whichActive currentCategory "all"}} item" href="?i=">
             All
@@ -31,9 +42,6 @@
                 <a class="{{sortActive sortby "price"}} item" href="?sort=price&i=sale">Price</a>
               </div>
             </div>
-            <div class="item" href="">
-              <a href="newPost"><i class="circular inverted large blue add icon"></i></a>
-            </div>
           </div>
         </div>
         <!--Display Listings-->
@@ -41,7 +49,7 @@
           {{#if showListings}}
             <div class="ui selection list">
             {{#each showListings}}
-              <a class="item" href="viewpost/{{_id}}/">
+              <a class="item" href="{{pathFor 'viewpost' postid=_id}}">
                 <div class="right floated content" style="font-size: 60%;">
                   posted {{dateHelper createdAt}} ago
                 </div>
@@ -57,7 +65,7 @@
             {{/each}}
             </div>
           {{else}}
-            There doesn't seem to be anything here. Make a new Event or Sales post and it will appear here.
+            This user doesn't seem to have made any posts of this category.
           {{/if}}
         </div>
       </div>

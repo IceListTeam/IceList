@@ -24,10 +24,10 @@
                 </div>
                 
                 <div style="margin-top: 5px; font-size: 90%;"><span style="margin-left: 10px;">by 
-                  <div class="ui basic small image label" style="margin-left: 5px; overflow: hidden;">
+                  <a class="ui basic small image label" style="margin-left: 5px; overflow: hidden;" href="{{pathFor 'profile' userid=owner}}">
                     <img src="{{userImage owner}}" style="height: 27px; width: 27px;">
                     {{nameHelper owner}}
-                  </div></span><br/>
+                  </a></span><br/>
                   <div class="ui horizontal divider header" style="font-size: 100%;">Details</div>
                   <div><i class="circular inverted {{colorHelper category}} wait icon"></i> {{dateHelper createdAt}}</div>
                   
@@ -69,6 +69,47 @@
               <br/><br/><a class="ui bottom left attached label" href="/main"><i class="inverted reply icon"></i>Back to List</a>
             {{/if}}
           </div>
+          {{#with thisPost}}
+            <div class="ui raised segment" style="margin-left: 20px; margin-right: 20px;">
+              <div class="ui horizontal divider header" style="font-size: 100%; margin-top: 5px;">Comments</div>
+              <div class="ui comments">
+            {{#each comments}}
+                <div class="comment">
+                  <a class="circular avatar" href="{{pathFor 'profile' userid=this.postedby}}">
+                    <img src="{{userImage this.postedby}}" style="width: 50px; height: 50px;">
+                  </a>
+                  <div class="content">
+                    <a class="author" href="{{pathFor 'profile' userid=this.postedby}}">{{nameHelper this.postedby}}</a>
+                    <div class="metadata">
+                      <div class="date">{{dateDiffHelper this.posttime}} ago</div>
+                    </div>
+                    <div class="text">
+                      {{this.text}}
+                    </div>
+                    {{#if ownPost this.postedby}}
+                    <div class="actions">
+                      <a class="deletecomment">
+                        <input type="hidden" class="commentno" value="{{this.num}}"/>
+                        <i class="delete icon"></i>
+                        Delete
+                      </a>
+                    </div>
+                    {{/if}}
+                  </div>
+                </div>
+            {{else}}
+              <center>No comments have been made so far.</center>
+            {{/each}}
+                </div>
+              <div class="ui divider" ></div>
+              <form class="ui form" id="commentform">
+                <div class="field">
+                <input type="text" name="commenttext" rows="1" />
+                </div>
+                <button id="commentsubmit" type="submit" class="ui submit button">Post</button>
+              </form>
+            </div><br/><br/>
+          {{/with}}
         </div>
     </div>
   </div>

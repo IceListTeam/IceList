@@ -102,6 +102,13 @@ Template.viewpost.helpers({
 
 Template.viewpost.events({
 
+  'click .deletecomment': function(event, template){
+    event.preventDefault();
+    
+    var commnum = event.target.firstElementChild.value;
+    Meteor.call("delComment" , commnum , Meteor.userId() , template.data.thisPost._id);
+  },
+  
   'click .unsubbutton': function(event, template){
     event.preventDefault();
     
@@ -142,7 +149,7 @@ Template.viewpost.events({
   'click #declineedit': function(event, template) {
     $('#editprompt').modal("hide dimmer").modal("hide");
   },
-  'submit': function(event, template) {
+  'submit #acceptedit': function(event, template) {
     $('#deleteprompt').modal("hide dimmer").modal("hide");
     
 		event.preventDefault();
@@ -169,6 +176,15 @@ Template.viewpost.events({
     var data = { name: name , desc: desc , location: locat , privacy: privacy , maxAttend: maxAttend , price: price , quantity: quantity };
     
     Meteor.call("updatePost" , template.data.thisPost._id , category , data );
-    document.location.reload(true);
+  },
+  
+  'submit #commentform': function(event, template) {
+		event.preventDefault();
+    
+    var txt = template.$('[name=commenttext]').val();
+    
+    Meteor.call("addComment" , txt , Meteor.userId() , template.data.thisPost._id );
+    
+    template.$('[name=commenttext]').val("");
   }
 });

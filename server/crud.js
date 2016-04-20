@@ -18,6 +18,7 @@ Meteor.methods({
       stat: "Active",
       createdAt: new Date(),
       owner: Meteor.userId(),
+      comments: new Array(),
       username: Meteor.user().emails[0].address
     });
     
@@ -27,7 +28,24 @@ Meteor.methods({
   updatePicture: function(userid , photourl) {
     Meteor.users.update({_id: userid} , {$set: {"profile.picture": photourl}});
   },  
-  
+
+  addComment: function(str , userid , eventid) {
+    var len = Listings.findOne({ _id: eventid })["commentlen"];
+    
+    Listings.update({_id: eventid} , {$push: {comments: {num: len+1 , text: str , postedby: userid , posttime: new Date()}}, $set: {commentlen: len+1}});
+  },
+
+  delComment: function(commentnum , userid , eventid) {
+    if( Listings.findOne({ _id: eventid , comments: {$elemMatch: {num: parseInt(commentnum)}}})["comments"][0]["postedby"] != userid)
+    {
+      throw new Meteor.Error("User did not create this comment, cannot delete it.");
+    }
+    console.log( eventid );
+    console.log( commentnum );
+    console.log( userid );
+    Listings.update({_id: eventid} , {$pull: {comments:  {num: parseInt(commentnum) , postedby: userid} }});
+  },    
+ 
   addAttendee: function(attendid , eventid) {
     //check if userid (attendid) is already in the attend array
     if( Listings.findOne({ _id: eventid , attend: attendid}) )
@@ -72,6 +90,7 @@ Meteor.methods({
       status: "Unsold",
       createdAt: new Date(),
       owner: Meteor.userId(),
+      comments: new Array(),
       username: Meteor.user().emails[0].address
       });
 
