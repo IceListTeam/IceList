@@ -1,3 +1,5 @@
+var ERRORS_KEY = 'resetErrors';
+
 Template.resetpassword.helpers({
   errorMessages: function() {
     return _.values(Session.get(ERRORS_KEY));
