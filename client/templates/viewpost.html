@@ -153,7 +153,7 @@
           <div class="description">
             {{#if thisPost}}
             {{#with thisPost}}
-              <form class="ui form">      
+              <form class="ui form" id="editform">      
                 <input type="hidden" name="category" value="{{category}}" />
                 <div class="item">
                   <div class="ui fluid left icon input">
@@ -196,13 +196,13 @@
                 <div class="item">
                   <div class="ui fluid left icon input">
                     <i class="{{colorHelper category}} users icon"></i>
-                    <input type="text" name="maxAttend" value="{{maxAttend}}" required />
+                    <input type="number" name="maxAttend" value="{{maxAttend}}" required />
                   </div>
                 </div>
                 {{/if}}
                 <br/>
                 <div class="item">
-                  <button class="ui right floated blue right labeled icon button" id="acceptedit" type="submit">
+                  <button class="ui right floated blue right labeled icon button" id="acceptedit" >
                     Update
                     <i class="checkmark icon"></i>
                   </button>

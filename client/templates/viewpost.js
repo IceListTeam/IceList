@@ -149,10 +149,11 @@ Template.viewpost.events({
   'click #declineedit': function(event, template) {
     $('#editprompt').modal("hide dimmer").modal("hide");
   },
-  'submit #acceptedit': function(event, template) {
+  'submit #editform': function(event, template) {
     $('#deleteprompt').modal("hide dimmer").modal("hide");
     
 		event.preventDefault();
+    
     var name = template.$('[name=name]').val();
 		var desc = template.$('[name=desc]').val();
 		var category = template.$('[name=category]').val();
@@ -176,6 +177,7 @@ Template.viewpost.events({
     var data = { name: name , desc: desc , location: locat , privacy: privacy , maxAttend: maxAttend , price: price , quantity: quantity };
     
     Meteor.call("updatePost" , template.data.thisPost._id , category , data );
+    window.location.reload();
   },
   
   'submit #commentform': function(event, template) {
