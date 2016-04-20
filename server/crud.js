@@ -1,6 +1,6 @@
 Meteor.methods({
 
-  addEvent: function (postName , longDesc , category , numPeople , time , privacy , location) {
+  addEvent: function (postName , longDesc , category , numPeople , time , privacy , location , images) {
   
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -19,6 +19,7 @@ Meteor.methods({
       createdAt: new Date(),
       owner: Meteor.userId(),
       comments: new Array(),
+      pictures: images,
       username: Meteor.user().emails[0].address
     });
     
@@ -74,7 +75,7 @@ Meteor.methods({
     }
   },
   
-  addListing: function (postName , longDesc , category , price , quantity , location) {
+  addListing: function (postName , longDesc , category , price , quantity , location , images) {
   
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
@@ -91,6 +92,7 @@ Meteor.methods({
       createdAt: new Date(),
       owner: Meteor.userId(),
       comments: new Array(),
+      pictures: images,
       username: Meteor.user().emails[0].address
       });
 

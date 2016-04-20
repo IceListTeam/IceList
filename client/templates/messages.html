@@ -7,18 +7,19 @@
     <div class="content-scrollable">
       <div class="wrapper-auth">
 	  <a href="/messages" style="width: 100%;"  class=" ui button">Back To Messages</a>
+<div class="ui segment">
 <div class="ui feed">
         {{#each messageDetails}}
           <div class="event">
-		  {{#if otherPerson ../userId2 receiver }}
+		  {{#if isNotYou receiver}}
             <div class="label">
-              <img src="{{msgAvatar}}">
+              <img src="{{msgAvatar ../userId2}}" width="100px" height="100px">
             </div>
             <div class="content">              
 			  <div class="summary">			  
               <a>{{senderName}} </a>
                 <div class="date">
-                  {{dateHelper sendDate}} - ago 
+                  {{dateHelper sendDate}} ago 
                 </div>
               </div>
               <div class="extra text">
@@ -39,7 +40,7 @@
               </div>
             </div>
 			<div class="label">
-              <img src="{{msgAvatar}}">
+              <img src="{{msgAvatar ../userId}}" width="100px" height="100px">
             </div>
 			
 			
@@ -47,9 +48,10 @@
           </div>
         {{/each}}
 </div>
+</div>
 <div class="ui form">
   <div class="field">
-  <textarea name="replyTextArea"></textarea>
+  <input type="text" name="replyTextArea" />
   <button style="width: 100%;" type="button" class="send_reply btn-primary">Reply</button>
   </div>
   
@@ -62,26 +64,38 @@
   
 {{else}}
   {{#if _new}}
-    Create New Message
-    <ul>
-    {{#each userss}}
-      <li>UserID: {{_id}} {{profile.firstname}} {{profile.lastname}} 
-       <input type="radio" name="adduser" value="{{_id}}">      </li>
-    {{/each}}
-    </ul>
-    
-    <textarea name="newTextArea"></textarea> 
-    <button type="button" class="send_message">New Conversation</button>
-    
-  {{else}}  
-    <ul>
-    {{#each messageListss}}
-      <li>Message:{{#if equals userId personA}}{{personB}}{{else}}{{personA}}{{/if}} <a href="messages/{{_id}}">Details</a></li>
-    {{else}}
-      You Have No Messages Right Now
-    {{/each}}
-    </ul>
-    
+<div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+      </div>
+    </nav>
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        <center><h2 class="ui icon header">
+          <i class="plus icon"></i>
+          <div class="content">
+            New Conversation
+            <div class="sub header">Start a new conversation with a user</div>
+          </div>
+        </h2></center>      
+        <div class="ui segment">
+          <label>Select User</label><br>
+          <select name="adduser">
+          {{#each userss}}
+             <option value="{{_id}}" {{queryUser _id ../qUser}}>{{profile.firstname}} {{profile.lastname}}</option>
+          {{/each}}
+          </select><br/><br/><br/>
+          
+          <div class="ui fluid input">
+            <input text="text" name="newTextArea" value="{{qMessage}}" placeholder="Message body..." /><br/>
+          </div>
+          <button type="button" class="send_message ui fluid button">New Conversation</button>
+          <br/><br/><br/><a class="ui bottom left attached blue label" href="/messages"><i class="inverted reply icon"></i>Back to Messages</a>
+        </div>
+      </div>
+    </div>
+</div>
   {{/if}}
 {{/if}}
   

@@ -25,6 +25,6 @@ Meteor.publish('Listings', function() {
 
 Meteor.publish("userData", function () {
     return Meteor.users.find({},
-        {fields: {"profile":1,"_id":1,"createdat":1}});
+        {fields: {"profile":1,"_id":1,"createdate":1}});
 });
 

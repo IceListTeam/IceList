@@ -8,31 +8,41 @@
 
     <div class="content-scrollable">
       <div class="wrapper-auth">
-        <h1 class="title-auth">Messages</h1>
-        <p class="subtitle-auth">Select a conversation below to see details.</p>
-
+        <center><h2 class="ui icon header">
+          <i class="mail icon"></i>
+          <div class="content">
+            Messages
+            <div class="sub header">Select a conversation below to see details.</div>
+          </div>
+        </h2></center>
+        <div class="ui segment">
+        <a class="ui top left attached blue label" href="/messages/new/add"><i class="mail icon"></i>New Message</a>
         {{#if hasConversations}}
-        <div class="ui feed">
-        {{#each allConversations}}
-          <div class="event">
-            <div class="label">
-              <img src="{{msgAvatar this._id}}">
-            </div>
-            <div class="content">
-              <div class="summary">
-              <a href="messages/{{_id}}">{{msgName this._id}}</a>
-                <div class="date">
-                  {{msgDate this._id}}
+          <div class="ui feed">
+          {{#each conversations}}
+            <div class="event">
+              <div class="label">
+                <img src="{{msgAvatar personA personB}}" width="100px" height="100px">
+              </div>
+              <div class="content">
+                <div class="summary">
+                <a href="messages/{{_id}}">{{msgName personA personB}}</a>
+                  <div class="date">
+                    {{dateDiffHelper date}} ago
+                  </div>
+                </div>
+                <div class="extra text">
+                  <b>{{recentSenderName}}:</b> {{recentMessage}}
                 </div>
               </div>
-              <div class="extra text">
-                {{msgPreview this._id}}
-              </div>
             </div>
+          {{/each}}
           </div>
-        {{/each}}
-        </div>
+        {{else}}
+          <center>You have no conversations currently.</center>
         {{/if}}
+        <br/><a class="ui bottom left attached blue label" href="{{pathFor 'main'}}"><i class="inverted reply icon"></i>Back to List</a>
+        </div>
         
       </div>
     </div>

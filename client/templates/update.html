@@ -8,13 +8,13 @@
 
     <div class="content-scrollable">
       <div class="wrapper-auth">
-        <h1 class="title-auth">Update.</h1>
-        <p class="subtitle-auth" >Update your account information below. </p>
-		{{#with currentUser}}
-			<div>
-				You are logged in {{currentUser.profile.email}}
-			</div>
-		{{/with}}
+        <center><h2 class="ui icon header">
+          <i class="user icon"></i>
+          <div class="content">
+            Update
+            <div class="sub header">Update your account information below.</div>
+          </div>
+        </h2></center>
 
         <form class="ui form" style="margin-left: 10px; margin-right: 10px;">
           {{#if errorMessages}}

@@ -30,40 +30,59 @@
 
 
           <div class="ui fluid left icon input">
+            <i class="calendar outline icon"></i>
             <input type="text" name="name" placeholder="Name" required />
             <span title="Name"></span>
           </div>
           
           <div class="ui fluid left icon input">
+            <i class="comment icon"></i>
             <textarea name="desc" placeholder="Description" rows="4" style="resize: none;" required maxlength="2000"></textarea>
             <span title="Description"></span>
           </div>
 
-          <div class="input-symbol">
+          <div class="ui fluid left icon right labeled input">
+            <i class="users icon"></i>
             <input type="number" name="attend"  value="1" placeholder="Attending" required min="1"/>
             <span title="Attending"></span>
+            <div class="ui basic label">
+              attendees max
+            </div>
           </div>
 
-          <div class="input-symbol">
+          <div class="ui fluid left icon input">
+            <i class="wait icon"></i>
             <input type="text" name="time" placeholder="Time" required />
             <span title="Time"></span>
           </div>
 
-          <div class="input-symbol">
+          <div class="ui fluid left icon input">
             <select name="privacy">
                <option value="Public">Public</option>
                <option value="Private">Private</option>
             </select>
           </div>
                     
-          <div class="input-symbol">
+          <div class="ui fluid left icon input">
+            <i class="home icon"></i>
             <input type="text" name="loc" placeholder="Location" required />
             <span title="Location"></span>
           </div>
           
+          <div class="ui segment" style="clear: left;">
+            <div class="ui horizontal divider header" style="font-size: 100%; margin-top: 5px;">Images</div>
+            <input type="file" class="uploadFile" id="uploadFile">
+            <p class="help-block">Select images and they will be added here.</p>
+            <div id="imgloc" >
+              
+            </div>
+            <input type="hidden" id="imageurls"/>
+            <div style="display: block; clear: both;"></div>
+          </div>
+          
           <input type="hidden" name="category" value="Event" />
 
-          <button type="submit" class="btn-primary">Create</button>
+          <button type="submit" class="btn-primary">Create</button><br/><br/><br/>
 
 </form>
 </div>

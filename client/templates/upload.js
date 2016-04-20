@@ -11,7 +11,7 @@ Template.upload.events({'change .uploadFile': function(event, template) {
       alert(error);
     }
     else{
-      template.$("[id=imgloc]").html( template.$("[id=imgloc]").html() + "<img src=\""+downloadUrl+"\" height=\"100px\">");
+      template.$("[id=imgloc]").html( template.$("[id=imgloc]").html() + "<img src=\""+downloadUrl+"\" height=\"100px\" style=\"float: left;\">");
       template.$("[id=imageurls]").val( template.$("[id=imageurls]").val() + downloadUrl + "|");
     }
   });

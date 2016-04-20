@@ -28,28 +28,42 @@
           </div>
 
           <div class="ui fluid left icon input">
+            <i class="calendar outline icon"></i>
             <input type="text" name="name" placeholder="Name" required />
             <span title="Name"></span>
           </div>
           
           <div class="ui fluid left icon input">
+            <i class="comment icon"></i>
             <textarea name="desc" placeholder="Description" rows="4" style="resize: none;" maxlength="2000" required></textarea>
             <span title="Description"></span>
           </div>
        
           <input type="hidden" name="category" value="Listing" />
 
-          <div class="ui fluid left icon input">
+          <div class="ui fluid left icon right labeled input">
+            <i class="cube icon"></i>
             <input type="number" name="quantity" placeholder="Quantity" required min="1" value="1" />
+            <div class="ui basic label">
+              item(s)
+            </div>
           </div>
 
           <div class="ui fluid left icon input">
-            <input type="text" name="price" placeholder="Price" required />
             <i class="dollar icon"></i>
+            <input type="text" name="price" placeholder="Price" required />
           </div>
 
-          <!--Need to create a new button after each image is uploaded (limit uploaded photos to 5?)-->
-          <button type="click" class="btn-primary" id="uploadImage">Upload Image</button>
+          <div class="ui segment" style="clear: left;">
+            <div class="ui horizontal divider header" style="font-size: 100%; margin-top: 5px;">Images</div>
+            <input type="file" class="uploadFile" id="uploadFile">
+            <p class="help-block">Select images and they will be added here.</p>
+            <div id="imgloc" >
+              
+            </div>
+            <input type="hidden" id="imageurls"/>
+            <div style="display: block; clear: both;"></div>
+          </div>
 
           <button type="submit" class="btn-primary">Create</button>
 

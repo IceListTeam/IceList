@@ -34,6 +34,7 @@
                   {{#if is category "Listing"}}
                   <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} dollar icon"></i>${{price}}</div>
                   <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} cube icon"></i>{{quantity}} remaining</div>
+                  <div style="margin-top: 10px;"><a class="ui fluid button" href="/messages/new/add/?user={{owner}}&msg=Hello,+I+would+like+to+purchase+'{{name}}'"><i class="mail icon"></i>Contact Seller</a></div>
                   {{else}}
                   <div style="margin-top: 10px;"><i class="circular inverted {{colorHelper category}} home icon"></i>
                   {{#if showPrivate _id privacy}}
@@ -61,6 +62,13 @@
                     <div class="ui top left attached {{colorHelper category}} label"><i class="comment icon"></i></div>
                     <div>{{desc}}</div>
                   </div>
+                  <div class="ui horizontal divider header" style="font-size: 100%; margin-top: 5px;">Pictures</div>
+                  {{#each pictures}}
+                    <a href="{{this}}" target="_blank"><img src="{{this}}" height="100px" style="float: left; padding-left: 5px;" /></a>
+                  {{else}}
+                  <center>No pictures available</center>
+                  {{/each}}
+                  <div style="display: block; clear: both;"></div>
                 </div>
                 <br/><br/><a class="ui bottom left attached {{colorHelper category}} label" href="/main"><i class="inverted reply icon"></i>Back to List</a>
               {{/with}}

@@ -9,11 +9,30 @@ Template.newPost.events({
 		var time = template.$('[name=time]').val();
 		var privacy = template.$('[name=privacy]').val();
 		var locat = template.$('[name=loc]').val();
-    	console.log('hello');
-		//Add more parameters
-		//var result = Meteor.call('addEvent', desc, category, attend, time, privacy, locat, stat);
-		//console.log(typeof result);
-		Meteor.call('addEvent', name , desc , category, attend, time, privacy, locat);
+    var imgurls = template.$('[id=imageurls]').val();
+    
+    var images = imgurls.split("|");
+    images.pop();
+
+		Meteor.call('addEvent', name , desc , category, attend, time, privacy, locat , images);
     Router.go("main");
-	}
+	},
+  
+  'change .uploadFile': function(event, template) {
+
+    event.preventDefault();
+
+    var upload1 = new Slingshot.Upload("myImageUploads");
+    var timeStamp = Math.floor(Date.now());                 
+    upload1.send(document.getElementById('uploadFile').files[0], function (error, downloadUrl) {
+      if (error) {
+        console.error('Error uploading');
+        alert(error);
+      }
+      else{
+        template.$("[id=imgloc]").html( template.$("[id=imgloc]").html() + "<img src=\""+downloadUrl+"\" height=\"100px\" style=\"float: left; padding-left: 5px;\">");
+        template.$("[id=imageurls]").val( template.$("[id=imageurls]").val() + downloadUrl + "|");
+      }
+    });
+  }
 });

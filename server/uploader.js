@@ -24,11 +24,11 @@ Slingshot.createDirective("myImageUploads", Slingshot.S3Storage, {
 
   key: function (file,metaContext) {
     var currentUserId = Meteor.user().emails[0].address;
-    if(metaContext.context=="profile")
+    if(metaContext && metaContext.context=="profile")
     {
       return currentUserId + "/" + "profilepic" + file.name.substr(file.name.lastIndexOf("."));
     }
-    return currentUserId + "/" + file.name;    
+    return currentUserId + "/img/" + file.name;    
   }
 
 });

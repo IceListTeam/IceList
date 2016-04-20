@@ -1,6 +1,6 @@
 Template.messages.events({
     'click .send_message': function(event,template){
-     sendTo=template.$('[name=adduser]:checked').val();
+     sendTo=template.$('[name=adduser]').val();
    message=template.$('[name=newTextArea]').val();
 
    Meteor.call('addMessage', sendTo,message);    
@@ -22,6 +22,11 @@ Template.messages.events({
 
 
 Template.messages.helpers({
+  queryUser: function(user,user2) {
+    console.log( user + "<>" + user2 );
+    return user==user2 ? "selected" : "";
+  },
+  
   equals: function (a,b) {
     return a === b;
   },
@@ -32,9 +37,15 @@ Template.messages.helpers({
     return false;
   }
   },
-  msgAvatar:function(){
-	  return "http://previews.123rf.com/images/kurhan/kurhan1111/kurhan111100105/11182717-Business-woman--Stock-Photo-lawyer.jpg";
+  
+  isNotYou: function(person) {
+    return person == Meteor.userId();
   },
+  
+  msgAvatar: function (person) {
+    return Meteor.users.findOne({_id: person})["profile"]["picture"];
+  },
+  
   dateHelper:function(date) {
     var L = new Date(date);
     var diff = Math.abs(Date.now() - L.getTime());
